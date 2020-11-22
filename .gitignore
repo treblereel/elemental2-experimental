@@ -4,3 +4,5 @@ bazel-*
 
 # Exclude maven target dir
 target
+maven/pointerlock.iml
+.idea/

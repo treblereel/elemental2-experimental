@@ -13,17 +13,21 @@ uses the same mechanism as [elemental2](https://github.com/google/elemental2/) t
 ```
 
 ```java
-        HTMLCanvasElement canvasElement = (HTMLCanvasElement) DomGlobal.document.createElement("canvas");
+        final HTMLCanvasElement canvasElement = (HTMLCanvasElement) DomGlobal.document.createElement("canvas");
         canvasElement.style.width = Js.cast(640);
         canvasElement.style.height = Js.cast(360);
         canvasElement.style.backgroundColor = "red";
         DomGlobal.document.body.append(canvasElement);
 
-        PointerlockElement.of(canvasElement).requestPointerLock();
-        canvasElement.addEventListener("mousemove", new EventListener() {
+        canvasElement.addEventListener("click", new EventListener() {
             public void handleEvent(Event evt) {
-                PointerlockMouseEvent event = PointerlockMouseEvent.of(Js.<MouseEvent>uncheckedCast(evt));
-                DomGlobal.console.log("PointerlockMouseEvent " + event.movementX + " " + event.movementY);
+                PointerlockElement.of(canvasElement).requestPointerLock();
+                canvasElement.addEventListener("mousemove", new EventListener() {
+                    public void handleEvent(Event evt) {
+                        PointerlockMouseEvent event = PointerlockMouseEvent.of(Js.<MouseEvent>uncheckedCast(evt));
+                        DomGlobal.console.log("PointerlockMouseEvent " + event.movementX + " " + event.movementY);
+                    }
+                });
             }
         });
 ```
