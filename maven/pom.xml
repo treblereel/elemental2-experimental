@@ -5,7 +5,7 @@
 
     <groupId>org.treblereel.gwt.elemental2</groupId>
     <artifactId>pointerlock</artifactId>
-    <version>0.1-SNAPSHOT</version>
+    <version>0.2</version>
     <packaging>gwt-lib</packaging>
 
     <name>Pointer Lock API</name>

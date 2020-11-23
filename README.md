@@ -8,7 +8,7 @@ uses the same mechanism as [elemental2](https://github.com/google/elemental2/) t
 <dependency>
     <groupId>org.treblereel.gwt.elemental2</groupId>
     <artifactId>pointerlock</artifactId>
-    <version>0.1</version>
+    <version>0.2</version>
 </dependency>
 ```
 
