@@ -4,10 +4,16 @@ package(default_visibility = [
 
 licenses(["notice"])  # Apache2
 
-# Closure externs for ace version 1.2.3
+# Closure externs for w3c_pointerlock
 alias(
     name = "w3c_pointerlock.js",
     actual = "@com_google_closure_compiler//:externs/browser/w3c_pointerlock.js",
+)
+
+# Closure externs for nonstandard_fileapi.js
+alias(
+    name = "nonstandard_fileapi.js",
+    actual = "@com_google_closure_compiler//:externs/browser/nonstandard_fileapi.js",
 )
 
 # Already-created elemental2 java apis, with metadata to let us reference them and share classes like Array, Element

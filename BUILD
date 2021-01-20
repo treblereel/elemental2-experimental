@@ -14,5 +14,6 @@ exports_files(["LICENSE"])
 
 jsinterop_generator(
     name = "elemental2-pointerlock",
-    exports = ["//java/org/treblereel/gwt/elemental2/pointerlock:pointerlock"],
+    exports = ["//java/org/treblereel/gwt/elemental2/pointerlock:pointerlock",
+    "//java/org/treblereel/gwt/elemental2/filesystem:filesystem"],
 )

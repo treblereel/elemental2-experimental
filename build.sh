@@ -18,8 +18,14 @@ BAZEL=${BAZEL:-bazel}
 # Get the parent dir of this script
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
-BAZEL_ARTIFACT_PATH=${DIR}/bazel-bin/java/org/treblereel/gwt/elemental2/pointerlock
-MAVEN_JAVA_SRC=${DIR}/maven/src/main/java
+modules=(
+      pointerlock
+      filesystem
+     )
+
+BAZEL_ARTIFACT_PATH=${DIR}/bazel-bin/java/org/treblereel/gwt/elemental2/
+MAVEN_DIR_PATH=${DIR}/maven/
+MAVEN_JAVA_SRC=/src/main/java
 
 LICENSE_HEADER=${DIR}/maven/license.txt
 
@@ -29,44 +35,52 @@ ATTEMPTS=${ATTEMPTS:-1}
 # Allow failures for this part
 set +e
 
-# Current try is "zero"
-i=0
+for Item in ${modules[*]}
+  do
+    # Current try is "zero"
+    i=0
 
-# Indicate that we should try at least once
-RESULT=1
+    # Indicate that we should try at least once
+    RESULT=1
 
-while [[ ${RESULT} -ne 0 && ${i} -lt ${ATTEMPTS} ]]
-do
-  i=$(($i+1))
-  # Invoke Bazel to produce the sources that we need
-  ${BAZEL} build //java/org/treblereel/gwt/elemental2/pointerlock:libpointerlock-src.jar
 
-  # Track the result
-  RESULT=$?
-done
+    while [[ ${RESULT} -ne 0 && ${i} -lt ${ATTEMPTS} ]]
+    do
+      i=$(($i+1))
+      # Invoke Bazel to produce the sources that we need
+      ${BAZEL} build //java/org/treblereel/gwt/elemental2/$Item:lib$Item-src.jar
 
-# Reinstate "stop on failure"
-set -e
+      # Track the result
+      RESULT=$?
+    done
 
-# If last attempt was a failure, give up
-if [[ ${RESULT} -ne 0 ]]
-then
-    echo "Failed after ${ATTEMPTS} retries"
-    exit 1
-fi
+    # Reinstate "stop on failure"
+    set -e
 
-# Copy generated java sources into maven source dir, apply license header
-cd ${MAVEN_JAVA_SRC}
-jar xf ${BAZEL_ARTIFACT_PATH}/libpointerlock-src.jar
-cd -
+    # If last attempt was a failure, give up
+    if [[ ${RESULT} -ne 0 ]]
+    then
+        echo "Failed after ${ATTEMPTS} retries"
+        exit 1
+    fi
 
-tmp_file=$(mktemp)
-for java in $(find ${MAVEN_JAVA_SRC} -name '*.java'); do
-    cat  ${LICENSE_HEADER} ${java} > ${tmp_file}
-    mv ${tmp_file} ${java}
-done
+    # Copy generated java sources into maven source dir, apply license header
+    cd ${MAVEN_DIR_PATH}$Item${MAVEN_JAVA_SRC}
+    jar xf ${BAZEL_ARTIFACT_PATH}$Item/lib$Item-src.jar
+    cd -
 
-rm ${MAVEN_JAVA_SRC}/META-INF/MANIFEST.MF
+    tmp_file=$(mktemp)
+    for java in $(find ${MAVEN_DIR_PATH}$Item${MAVEN_JAVA_SRC} -name '*.java'); do
+        cat  ${LICENSE_HEADER} ${java} > ${tmp_file}
+        mv ${tmp_file} ${java}
+    done
+
+    rm ${MAVEN_DIR_PATH}$Item${MAVEN_JAVA_SRC}/META-INF/MANIFEST.MF
+  done
+
+
+
+
 
 
 # Maven can now be invoked by hand, installing locally, deploying to its snapshot/staging repo

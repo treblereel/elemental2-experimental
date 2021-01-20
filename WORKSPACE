@@ -1,4 +1,4 @@
-workspace(name = "org_treblereel_gwt_elemental2_pointerlock")
+workspace(name = "org_treblereel_gwt_elemental2_experimental")
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
