@@ -21,6 +21,7 @@ DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 modules=(
       pointerlock
       filesystem
+      gamepad
      )
 
 BAZEL_ARTIFACT_PATH=${DIR}/bazel-bin/java/org/treblereel/gwt/elemental2/
