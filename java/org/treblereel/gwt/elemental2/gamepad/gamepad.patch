@@ -1,0 +1,101 @@
+--- w3c_gamepad.js	2020-08-22 22:17:09.370840673 +0200
++++ w3c_gamepad_1.js	2021-01-21 21:36:08.112972353 +0100
+@@ -23,13 +23,34 @@
+ /**
+  * @return {!Array.<!Gamepad>}
+  */
+-navigator.getGamepads = function() {};
++Navigator.prototype.getGamepads = function() {};
+
+ /**
+  * @return {!Array.<!Gamepad>}
+  */
+-navigator.webkitGetGamepads = function() {};
++Navigator.prototype.webkitGetGamepads = function() {};
+
++/**
++ * @record
++ * @extends {EventInit}
++ * @see https://w3c.github.io/gamepad/#gamepadeventinit-dictionary
++ */
++function GamepadEventInit() {}
++
++/** @const {Gamepad} */
++GamepadEventInit.prototype.gamepad;
++
++/**
++ * @constructor
++ * @param {string} type
++ * @param {GamepadEventInit=} opt_gamepadEventInit
++ * @extends {Event}
++ * @see https://w3c.github.io/gamepad/#gamepadevent-interface
++ */
++function GamepadEvent(type, opt_gamepadEventInit) {}
++
++/** @const {Gamepad} */
++GamepadEvent.prototype.gamepad;
+
+ /**
+  * @interface
+@@ -37,32 +58,32 @@
+ var Gamepad = function() {};
+
+ /**
+- * @type {string}
++ * @const {string}
+  */
+ Gamepad.prototype.id;  // read-only
+
+ /**
+- * @type {number}
++ * @const {number}
+  */
+ Gamepad.prototype.index;  // read-only
+
+ /**
+- * @type {boolean}
++ * @const {boolean}
+  */
+ Gamepad.prototype.connected;  // read-only
+
+ /**
+- * @type {number}
++ * @const {number}
+  */
+ Gamepad.prototype.timestamp;  // read-only
+
+ /**
+- * @type {string}
++ * @const {string}
+  */
+ Gamepad.prototype.mapping;  // read-only
+
+ /**
+- * @type {!Array.<number>}
++ * @const {!Array.<number>}
+  */
+ Gamepad.prototype.axes;  // read-only
+
+@@ -70,7 +91,7 @@
+  * Note: The W3C spec changed, this property now returns an array of
+  * GamepadButton objects.
+  *
+- * @type {(!Array.<!GamepadButton>|!Array.<number>)}
++ * @const {(!Array.<!GamepadButton>|!Array.<number>)}
+  */
+ Gamepad.prototype.buttons;
+
+@@ -81,11 +102,11 @@
+ var GamepadButton = function() {};
+
+ /**
+- * @type {boolean}
++ * @const {boolean}
+  */
+ GamepadButton.prototype.pressed;  // read-only
+
+ /**
+- * @type {number}
++ * @const {number}
+  */
+ GamepadButton.prototype.value;  // read-only
