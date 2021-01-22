@@ -16,6 +16,7 @@ jsinterop_generator(
     name = "elemental2-experimental",
     exports = ["//java/org/treblereel/gwt/elemental2/pointerlock:pointerlock",
     "//java/org/treblereel/gwt/elemental2/filesystem:filesystem",
-    "//java/org/treblereel/gwt/elemental2/gamepad:gamepad"
+    "//java/org/treblereel/gwt/elemental2/gamepad:gamepad",
+    "//java/org/treblereel/gwt/elemental2/proxy:proxy",
     ],
 )
