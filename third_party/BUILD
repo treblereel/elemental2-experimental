@@ -22,6 +22,12 @@ alias(
     actual = "@com_google_closure_compiler//:externs/browser/w3c_gamepad.js",
 )
 
+# Closure externs for es6_proxy.js
+alias(
+    name = "es6_proxy.js",
+    actual = "@com_google_closure_compiler//:externs/browser/es6_proxy.js",
+)
+
 # Already-created elemental2 java apis, with metadata to let us reference them and share classes like Array, Element
 alias(
     name = "elemental2-core",
