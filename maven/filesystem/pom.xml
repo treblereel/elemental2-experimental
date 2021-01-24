@@ -9,8 +9,8 @@
     <packaging>gwt-lib</packaging>
 
     <name>Filesystem API</name>
-    <description>JsInterop wrapping for Filesystem API, generated from closure-compiler externs</description>
-    <url>https://github.com/google/closure-compiler/blob/master/externs/browser/w3c_pointerlock.js</url>
+    <description>Jsinterop wrapping for Filesystem API, generated from closure-compiler externs</description>
+    <url>https://github.com/google/closure-compiler/blob/master/externs/browser/nonstandard_fileapi.js</url>
 
     <licenses>
         <license>

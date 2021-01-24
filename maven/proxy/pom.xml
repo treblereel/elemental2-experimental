@@ -8,9 +8,9 @@
     <version>0.1</version>
     <packaging>gwt-lib</packaging>
 
-    <name>Pointer Lock API</name>
-    <description>JsInterop wrapping for Pointer Lock API, generated from closure-compiler externs</description>
-    <url>https://github.com/google/closure-compiler/blob/master/externs/browser/w3c_pointerlock.js</url>
+    <name>ES6 Proxy</name>
+    <description>Jsinterop wrapping for ES6 Proxy, generated from closure-compiler externs</description>
+    <url>https://github.com/google/closure-compiler/blob/master/externs/browser/es6_proxy.js</url>
 
     <licenses>
         <license>
