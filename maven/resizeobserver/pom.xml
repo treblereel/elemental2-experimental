@@ -4,13 +4,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.treblereel.gwt.elemental2</groupId>
-    <artifactId>proxy</artifactId>
+    <artifactId>resizeobserver</artifactId>
     <version>0.1</version>
     <packaging>gwt-lib</packaging>
 
-    <name>ES6 Proxy</name>
-    <description>Jsinterop wrapping for ES6 Proxy, generated from closure-compiler externs</description>
-    <url>https://github.com/google/closure-compiler/blob/master/externs/browser/es6_proxy.js</url>
+    <name>ResizeObserver API</name>
+    <description>JsInterop wrapping for ResizeObserver API, generated from closure-compiler externs</description>
+    <url>https://github.com/google/closure-compiler/blob/master/externs/browser/wicg_resizeobserver.js</url>
 
     <licenses>
         <license>
@@ -67,6 +67,11 @@
             <artifactId>elemental2-core</artifactId>
             <version>1.1.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.google.elemental2</groupId>
+            <artifactId>elemental2-dom</artifactId>
+            <version>1.1.0</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -86,7 +91,7 @@
                 <version>1.0.0</version>
                 <extensions>true</extensions>
                 <configuration>
-                    <moduleName>org.treblereel.gwt.elemental2.Proxy</moduleName>
+                    <moduleName>org.treblereel.gwt.elemental2.ResizeObserver</moduleName>
                 </configuration>
             </plugin>
             <plugin>
