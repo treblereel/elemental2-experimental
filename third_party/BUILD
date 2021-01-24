@@ -28,6 +28,12 @@ alias(
     actual = "@com_google_closure_compiler//:externs/browser/es6_proxy.js",
 )
 
+# Closure externs for wicg_resizeobserver.js
+alias(
+    name = "wicg_resizeobserver.js",
+    actual = "@com_google_closure_compiler//:externs/browser/wicg_resizeobserver.js",
+)
+
 # Already-created elemental2 java apis, with metadata to let us reference them and share classes like Array, Element
 alias(
     name = "elemental2-core",
