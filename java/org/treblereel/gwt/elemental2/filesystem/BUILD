@@ -1,10 +1,6 @@
 # This package contains the build rule to build ace editor api as if it were part of elemental2
 
 load("@com_google_jsinterop_generator//:jsinterop_generator.bzl", "jsinterop_generator")
-load(
-    "//build_defs/internal_do_not_use:elemental_utils.bzl",
-    "patch_extern_file",
-)
 
 package(
     default_visibility = [
