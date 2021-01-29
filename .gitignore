@@ -1,6 +1,7 @@
 # Exclude bazel dirs, intellij bazel plugin dir
 bazel-*
 .ijwb
+*.iml
 
 # Exclude maven target dir
 target

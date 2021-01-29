@@ -18,5 +18,6 @@ jsinterop_generator(
     "//java/org/treblereel/gwt/elemental2/filesystem:filesystem",
     "//java/org/treblereel/gwt/elemental2/gamepad:gamepad",
     "//java/org/treblereel/gwt/elemental2/proxy:proxy",
+    "//java/org/treblereel/gwt/elemental2/permissions:permissions",
     ],
 )

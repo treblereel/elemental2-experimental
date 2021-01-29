@@ -1,0 +1,43 @@
+--- w3c_permissions.js	2021-01-28 19:27:41.443593921 +0100
++++ w3c_permissions1.js	2021-01-28 19:29:35.887754466 +0100
+@@ -78,15 +78,35 @@
+ /** @type {?function(!Event)} */
+ PermissionStatus.prototype.onchange;
+
+-/** @override */
+-PermissionStatus.prototype.addEventListener = function(
+-    type, listener, opt_options) {};
++/**
++ * @param {string} type
++ * @param {EventListener} listener
++ * @param {(boolean|!AddEventListenerOptions)=} opt_options
++ * @return {undefined}
++ * @this {THIS}
++ * @template THIS
++ * @see https://dom.spec.whatwg.org/#dom-eventtarget-addeventlistener
++ */
++PermissionStatus.prototype.addEventListener = function(type, listener, opt_options) {
++};
+
+-/** @override */
++/**
++ * @param {string} type
++ * @param {EventListener} listener
++ * @param {(boolean|!EventListenerOptions)=} opt_options
++ * @return {undefined}
++ * @this {THIS}
++ * @template THIS
++ * @see https://dom.spec.whatwg.org/#dom-eventtarget-removeeventlistener
++ */
+ PermissionStatus.prototype.removeEventListener = function(
+     type, listener, opt_options) {};
+
+-/** @override */
++/**
++ * @param {!Event} evt
++ * @return {boolean}
++ * @see https://dom.spec.whatwg.org/#dom-eventtarget-dispatchevent
++ */
+ PermissionStatus.prototype.dispatchEvent = function(evt) {};
+
+

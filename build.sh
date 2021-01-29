@@ -24,6 +24,7 @@ modules=(
       gamepad
       proxy
       resizeobserver
+      permissions
      )
 
 BAZEL_ARTIFACT_PATH=${DIR}/bazel-bin/java/org/treblereel/gwt/elemental2/
