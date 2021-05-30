@@ -81,7 +81,7 @@
   * GamepadButton objects.
   *
 - * @type {(!Array.<!GamepadButton>|!Array.<number>)}
-+ * @const {(!Array.<!GamepadButton>|!Array.<number>)}
++ * @const {!Array.<!GamepadButton>}
   */
  Gamepad.prototype.buttons;
 
