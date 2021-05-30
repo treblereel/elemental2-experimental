@@ -1,0 +1,23 @@
+--- webxr.js	2021-05-29 20:03:25.787613197 -0400
++++ webxr.temp.js	2021-05-29 19:47:20.215420997 -0400
+@@ -658,11 +658,18 @@
+  */
+ var XRWebGLLayer = function (session, context, layerInit) { };
+ 
+-/** @override */
++//TODO this should be set in jsinterop-generator as patch
++/**
++ * @override
++ * @param {EventListener} listener
++ */
+ XRWebGLLayer.prototype.addEventListener = function(
+     type, listener, opt_options) {};
+ 
+-/** @override */
++/**
++ * @override
++ * @param {EventListener} listener
++ */
+ XRWebGLLayer.prototype.removeEventListener = function(
+     type, listener, opt_options) {};
+ 
