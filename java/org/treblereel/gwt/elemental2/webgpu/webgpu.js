@@ -39,12 +39,13 @@ GPUCanvasContext.prototype.configureSwapChain = function(descriptor) { };
 
 /**
  * @param {GPUAdapter} adapter
- * @return {GPUTextureFormat}
+ * @return {string} //GPUTextureFormat
  */
 GPUCanvasContext.prototype.getSwapChainPreferredFormat = function(adapter) { };
 
 /**
  * @interface
+ * @extends {GPUObjectBase}
  */
 var GPUSwapChain = function () { };
 
@@ -54,324 +55,14 @@ var GPUSwapChain = function () { };
 GPUSwapChain.prototype.getCurrentTexture = function() { };
 
 /**
- * @constructor
- */
-var GPUPowerPreference = function () { }
-
-/** @const */ GPUPowerPreference.LOW_POWER = 'low-power';
-/** @const */ GPUPowerPreference.HIGH_PERFORMANCE = 'high-performance';
-
-/**
- * @constructor
- */
-var GPUIndexFormat = function () { }
-
-/** @const */ GPUIndexFormat.UINT16 = 'uint16';
-/** @const */ GPUIndexFormat.UINT32 = 'uint32';
-
-/**
- * @constructor
- */
-var GPUStoreOp = function () { }
-
-/** @const */ GPUStoreOp.STORE = 'store';
-/** @const */ GPUStoreOp.CLEAR = 'clear';
-
-/**
- * @constructor
- */
-var GPUFrontFace = function () { }
-
-/** @const */ GPUFrontFace.CCW = 'ccw';
-/** @const */ GPUFrontFace.CW = 'cw';
-
-/**
- * @constructor
- */
-var GPUCanvasCompositingAlphaMode = function () { }
-
-/** @const */ GPUCanvasCompositingAlphaMode.OPAQUE = 'opaque';
-/** @const */ GPUCanvasCompositingAlphaMode.PREMULTIPLIED = 'premultiplied';
-
-/**
- * @constructor
- */
-var GPUCullMode = function () { }
-
-/** @const */ GPUCullMode.NONE = 'none';
-/** @const */ GPUCullMode.FRONT = 'front';
-/** @const */ GPUCullMode.BACK = 'back';
-
-/**
- * @constructor
- */
-var GPUPrimitiveTopology = function () { }
-
-/** @const */ GPUPrimitiveTopology.POINT_LIST = 'point-list';
-/** @const */ GPUPrimitiveTopology.LINE_LIST = 'line-list';
-/** @const */ GPUPrimitiveTopology.LINE_STRIP = 'line-strip';
-/** @const */ GPUPrimitiveTopology.TRIANGLE_LIST = 'triangle-list';
-/** @const */ GPUPrimitiveTopology.TRIANGLE_STRIP = 'triangle-strip';
-
-/**
- * @constructor
- */
-var GPUTextureDimension = function () { }
-
-/** @const */ GPUTextureDimension._1D = '1d';
-/** @const */ GPUTextureDimension._2D = '2d';
-/** @const */ GPUTextureDimension._3D = '3d';
-
-/**
- * @constructor
- */
-var GPUPipelineStatisticName = function () { }
-
-/** @const */ GPUPipelineStatisticName.VERTEX_SHADER_INVOCATIONS = 'vertex-shader-invocations';
-/** @const */ GPUPipelineStatisticName.CLIPPER_INVOCATIONS = 'clipper-invocations';
-/** @const */ GPUPipelineStatisticName.CLIPPER_PRIMITIVES_OUT = 'clipper-primitives-out';
-/** @const */ GPUPipelineStatisticName.FRAGMENT_SHADER_INVOCATIONS = 'fragment-shader-invocations';
-/** @const */ GPUPipelineStatisticName.COMPUTE_SHADER_INVOCATIONS = 'compute-shader-invocations';
-
-/**
- * @constructor
- */
-var GPUQueryType = function () { }
-
-/** @const */ GPUQueryType.OCCLUSION = 'occlusion';
-/** @const */ GPUQueryType.PIPELINE_STATISTICS = 'pipeline-statistics';
-/** @const */ GPUQueryType.TIMESTAMP = 'timestamp';
-
-/**
- * @constructor
- */
-var GPULoadOp = function () { }
-
-/** @const */ GPULoadOp.LOAD = 'load';
-
-/**
- * @constructor
- */
-var GPUTextureSampleType = function () { }
-
-/** @const */ GPUTextureSampleType.FLOAT = 'float';
-/** @const */ GPUTextureSampleType.UNFILTERABLE_FLOAT = 'unfilterable-float';
-/** @const */ GPUTextureSampleType.DEPTH = 'depth';
-/** @const */ GPUTextureSampleType.SINT = 'sint';
-/** @const */ GPUTextureSampleType.UINT = 'uint';
-
-/**
- * @constructor
- */
-var GPUBlendFactor = function () { }
-
-/** @const */ GPUBlendFactor.ZERO = 'zero';
-/** @const */ GPUBlendFactor.ONE = 'one';
-/** @const */ GPUBlendFactor.SRC = 'src';
-/** @const */ GPUBlendFactor.ON_MINUS_SRC = 'one-minus-src';
-/** @const */ GPUBlendFactor.SRC_ALPHA = 'src-alpha';
-/** @const */ GPUBlendFactor.ONE_MINUS_SRC_ALPHA = 'one-minus-src-alpha';
-/** @const */ GPUBlendFactor.DST = 'dst';
-/** @const */ GPUBlendFactor.ONE_MINUS_DST = 'one-minus-dst';
-/** @const */ GPUBlendFactor.DST_ALPHA = 'dst-alpha';
-/** @const */ GPUBlendFactor.ONE_MINUS_DST_ALPH = 'one-minus-dst-alpha';
-/** @const */ GPUBlendFactor.SRC_ALPHA_SATURATED = 'src-alpha-saturated';
-/** @const */ GPUBlendFactor.CONSTANT = 'constant';
-/** @const */ GPUBlendFactor.ONE_MINUS_CONSTANT = 'one-minus-constant';
-
-/**
- * @constructor
- */
-var GPUBlendOperation = function () { }
-
-/** @const */ GPUBlendOperation.ADD = 'add';
-/** @const */ GPUBlendOperation.SUBTRACT = 'subtract';
-/** @const */ GPUBlendOperation.REVERSE_SUBTRACT = 'reverse-subtract';
-/** @const */ GPUBlendOperation.MIN = 'min';
-/** @const */ GPUBlendOperation.MAX = 'max';
-
-/**
- * @constructor
- */
-var GPUStorageTextureAccess = function () { }
-
-/** @const */ GPUStorageTextureAccess.READ_ONLY = 'read-only';
-/** @const */ GPUStorageTextureAccess.WRITE_ONLY = 'write-only';
-
-/**
- * @constructor
- */
-var GPUSamplerBindingType = function () { }
-
-/** @const */ GPUSamplerBindingType.FILTERING = 'filtering';
-/** @const */ GPUSamplerBindingType.NON_FILTERING = 'non-filtering';
-/** @const */ GPUSamplerBindingType.COMPARISON = 'comparison';
-
-/**
- * @constructor
- */
-var GPUBufferBindingType = function () { }
-
-/** @const */ GPUBufferBindingType.UNIFORM = 'uniform';
-/** @const */ GPUBufferBindingType.STORAGE = 'storage';
-/** @const */ GPUBufferBindingType.READ_ONLY_STORAGE = 'read-only-storage';
-
-/**
- * @constructor
- */
-var GPUCompilationMessageType = function () { }
-
-/** @const */ GPUCompilationMessageType.ERROR = 'error';
-/** @const */ GPUCompilationMessageType.WARNING = 'warning';
-/** @const */ GPUCompilationMessageType.INFO = 'info';
-
-/**
- * @constructor
- */
-var GPUTextureAspect = function () { }
-
-/** @const */ GPUTextureAspect.ALL = 'all';
-/** @const */ GPUTextureAspect.STENCIL_ONLY = 'stencil-only';
-/** @const */ GPUTextureAspect.DEPTH_ONLY = 'depth-only';
-
-/**
- * @constructor
- */
-var GPUInputStepMode = function () { }
-
-/** @const */ GPUInputStepMode.VERTEX = 'vertex';
-/** @const */ GPUInputStepMode.INSTANCE = 'instance';
-
-/**
- * @constructor
- */
-var GPUTextureViewDimension = function () { }
-
-/** @const */ GPUTextureViewDimension._1D = '1d';
-/** @const */ GPUTextureViewDimension._2D = '2d';
-/** @const */ GPUTextureViewDimension._2DARRAY = '2d-array';
-/** @const */ GPUTextureViewDimension.CUBE = 'cube';
-/** @const */ GPUTextureViewDimension.CUBEARRAY = 'cube-array';
-/** @const */ GPUTextureViewDimension._3D = '3d';
-
-/**
- * @constructor
- */
-var GPUTextureFormat = function () { }
-// 8-bit formats
-/** @const */ GPUTextureFormat.R8UNORM = 'r8unorm';
-/** @const */ GPUTextureFormat.R8SNORM = 'r8snorm';
-/** @const */ GPUTextureFormat.R8UINT = 'r8uint';
-/** @const */ GPUTextureFormat.R8SINT = 'r8sint';
-// 16-bit formats
-/** @const */ GPUTextureFormat.R16UINT = 'r16uint';
-/** @const */ GPUTextureFormat.R16SINT = 'r16sint';
-/** @const */ GPUTextureFormat.R16FLOAT = 'r16float';
-/** @const */ GPUTextureFormat.RG8UNORM = 'rg8unorm';
-/** @const */ GPUTextureFormat.RG8SNORM = 'rg8snorm';
-/** @const */ GPUTextureFormat.RG8UINT = 'rg8uint';
-/** @const */ GPUTextureFormat.RG8SINT = 'rg8sint';
-// 32-bit formats
-/** @const */ GPUTextureFormat.R32UINT = 'r32uint';
-/** @const */ GPUTextureFormat.R32SINT = 'r32sint';
-/** @const */ GPUTextureFormat.R32FLOAT = 'r32float';
-/** @const */ GPUTextureFormat.RG16UINT = 'rg16uint';
-/** @const */ GPUTextureFormat.RG16SINT = 'rg16sint';
-/** @const */ GPUTextureFormat.RG16FLOAT = 'rg16float';
-/** @const */ GPUTextureFormat.RGBA8UNORM = 'rgba8unorm';
-/** @const */ GPUTextureFormat.RGBA8UNORM_SRGB = 'rgba8unorm-srgb';
-/** @const */ GPUTextureFormat.RGBA8SNORM = 'rgba8snorm';
-/** @const */ GPUTextureFormat.RGBA8UINT = 'rgba8uint';
-/** @const */ GPUTextureFormat.RGBA8SINT = 'rgba8sint';
-/** @const */ GPUTextureFormat.BGRA8UNORM = 'bgra8unorm';
-/** @const */ GPUTextureFormat.BGRA8UNORM_SRGB = 'bgra8unorm-srgb';
-// Packed 32-bit formats
-/** @const */ GPUTextureFormat.RGB9E5UFLOAT = 'rgb9e5ufloat';
-/** @const */ GPUTextureFormat.RGB10A2UNORM = 'rgb10a2unorm';
-/** @const */ GPUTextureFormat.RG11B10UFLOAT = 'rg11b10ufloat';
-// 64-bit formats
-/** @const */ GPUTextureFormat.RG32UINT = 'rg32uint';
-/** @const */ GPUTextureFormat.RG32SINT = 'rg32sint';
-/** @const */ GPUTextureFormat.RG32FLOAT = 'rg32float';
-/** @const */ GPUTextureFormat.RGBA16UINT = 'rgba16uint';
-/** @const */ GPUTextureFormat.RGBA16SINT = 'rgba16sint';
-/** @const */ GPUTextureFormat.RGBA16FLOAT = 'rgba16float';
-// 128-bit formats
-/** @const */ GPUTextureFormat.RGBA32UINT = 'rgba32uint';
-/** @const */ GPUTextureFormat.RGBA32SINT = 'rgba32sint';
-/** @const */ GPUTextureFormat.RGBA32FLOAT = 'rgba32float';
-// Depth and stencil formats
-/** @const */ GPUTextureFormat.STENCIL8 = 'stencil8';
-/** @const */ GPUTextureFormat.DEPTH16UNORM = 'depth16unorm';
-/** @const */ GPUTextureFormat.DEPTH24PLUS = 'depth24plus';
-/** @const */ GPUTextureFormat.DEPTH24PLUS_STENCIL8 = 'depth24plus-stencil8';
-/** @const */ GPUTextureFormat.DEPTH32FLOAT = 'depth32float';
-// BC compressed formats usable if "texture-compression-bc" is both
-// supported by the device/user agent and enabled in requestDevice.
-/** @const */ GPUTextureFormat.BC1_RGBA_UNORM = 'bc1-rgba-unorm';
-/** @const */ GPUTextureFormat.BC1_RGBA_UNORM_SRGB = 'bc1-rgba-unorm-srgb';
-/** @const */ GPUTextureFormat.BC2_RGBA_UNORM = 'bc2-rgba-unorm';
-/** @const */ GPUTextureFormat.BC2_RGBA_UNORM_SRGB = 'bc2-rgba-unorm-srgb';
-/** @const */ GPUTextureFormat.BC3_RGBA_UNORM = 'bc3-rgba-unorm';
-/** @const */ GPUTextureFormat.BC3_RGBA_UNORM_SRGB = 'bc3-rgba-unorm-srgb';
-/** @const */ GPUTextureFormat.BC4_R_UNORM = 'bc4-r-unorm';
-/** @const */ GPUTextureFormat.BC4_R_SNORM = 'bc4-r-snorm';
-/** @const */ GPUTextureFormat.BC5_RG_UNORM = 'bc5-rg-unorm';
-/** @const */ GPUTextureFormat.BC5_RG_SNORM = 'bc5-rg-snorm';
-/** @const */ GPUTextureFormat.BC6H_RGB_UFLOAT = 'bc6h-rgb-ufloat';
-/** @const */ GPUTextureFormat.BC6H_RGB_FLOAT = 'bc6h-rgb-float';
-/** @const */ GPUTextureFormat.BC7_RGBA_UNORM = 'bc7-rgba-unorm';
-/** @const */ GPUTextureFormat.BC7_RGBA_UNORM_SRGB = 'bc7-rgba-unorm-srgb';
-// "depth24unorm-stencil8" feature
-/** @const */ GPUTextureFormat.DEPTH24UNORM_STENCIL8 = 'depth24unorm-stencil8';
-// "depth32float-stencil8" feature
-/** @const */ GPUTextureFormat.DEPTH32FLOAT_STENCIL8 = 'depth32float-stencil8';
-
-/**
- * @constructor
- */
-var GPUVertexFormat = function () { }
-
-/** @const */ GPUVertexFormat.UINT8X2 = 'uint8x2';
-/** @const */ GPUVertexFormat.UINT8X4 = 'uint8x4';
-/** @const */ GPUVertexFormat.SINT8X2 = 'sint8x2';
-/** @const */ GPUVertexFormat.SINT8X4 = 'sint8x4';
-/** @const */ GPUVertexFormat.UNORM8X2 = 'unorm8x2';
-/** @const */ GPUVertexFormat.UNORM8X4 = 'unorm8x4';
-/** @const */ GPUVertexFormat.SNORM8X2 = 'snorm8x2';
-/** @const */ GPUVertexFormat.SNORM8X4 = 'snorm8x4';
-/** @const */ GPUVertexFormat.UINT16X2 = 'uint16x2';
-/** @const */ GPUVertexFormat.UINT16X4 = 'uint16x4';
-/** @const */ GPUVertexFormat.SINT16X2 = 'sint16x2';
-/** @const */ GPUVertexFormat.SINT16X4 = 'sint16x4';
-/** @const */ GPUVertexFormat.UNORM16X2 = 'unorm16x2';
-/** @const */ GPUVertexFormat.UNORM16X4 = 'unorm16x4';
-/** @const */ GPUVertexFormat.SNORM16X2 = 'snorm16x2';
-/** @const */ GPUVertexFormat.SNORM16X4 = 'snorm16x4';
-/** @const */ GPUVertexFormat.FLOAT16X2 = 'float16x2';
-/** @const */ GPUVertexFormat.FLOAT16X4 = 'float16x4';
-/** @const */ GPUVertexFormat.FLOAT32 = 'float32';
-/** @const */ GPUVertexFormat.FLOAT32X2 = 'float32x2';
-/** @const */ GPUVertexFormat.FLOAT32X3 = 'float32x3';
-/** @const */ GPUVertexFormat.FLOAT32X4 = 'float32x4';
-/** @const */ GPUVertexFormat.UINT32 = 'uint32';
-/** @const */ GPUVertexFormat.UINT32X2 = 'uint32x2';
-/** @const */ GPUVertexFormat.UINT32X3 = 'uint32x3';
-/** @const */ GPUVertexFormat.UINT32X4 = 'uint32x4';
-/** @const */ GPUVertexFormat.SINT32 = 'sint32';
-/** @const */ GPUVertexFormat.SINT32X2 = 'sint32x2';
-/** @const */ GPUVertexFormat.SINT32X3 = 'sint32x3';
-/** @const */ GPUVertexFormat.SINT32X4 = 'sint32x4';
-
-/**
  * @record
  */
 var GPURequestAdapterOptions = function () { };
 
 /**
- * @type {GPUPowerPreference}
+ * @type {string}
  */
-GPURequestAdapterOptions.prototype.powerPreference
+GPURequestAdapterOptions.prototype.powerPreference //GPUPowerPreference
 
 /**
  * @record
@@ -408,7 +99,8 @@ GPU.prototype.requestAdapter = function (opt_GPURequestAdapterOptions) { };
 
 /**
  * @interface
- */
+ * @extends {Iterable<!Array<string>>}
+s */
 var GPUSupportedFeatures = function () { };
 
 /**
@@ -571,9 +263,9 @@ GPUAdapter.prototype.requestDevice = function (opt_GPUDeviceDescriptor) { };
 var GPUDeviceDescriptor = function () { };
 
 /**
- * @type {Array<GPUFeatureName>}
+ * @type {Array<string>}
  */
-GPUDeviceDescriptor.prototype.nonGuaranteedFeatures;
+GPUDeviceDescriptor.prototype.nonGuaranteedFeatures; //GPUFeatureName
 
 /**
  * @type {Map<string, number>}
@@ -584,6 +276,7 @@ GPUDeviceDescriptor.prototype.nonGuaranteedLimits;
 /**
  * @interface
  * @extends {EventTarget}
+ * @extends {GPUObjectBase}
  */
 var GPUDevice = function () { };
 
@@ -605,6 +298,9 @@ GPUDevice.prototype.limits;
  */
 GPUDevice.prototype.queue;
 
+/**
+ * @return {undefined}
+ */
 GPUDevice.prototype.destroy = function() { };
 
 /**
@@ -758,18 +454,6 @@ GPUOrigin3DDict.prototype.y
 GPUOrigin3DDict.prototype.z
 
 /**
- * @constructor
- */
-var GPUFeatureName = function() {}
-
-/** @const */ GPUFeatureName.DEPTH_CLAMPING = 'depth-clamping';
-/** @const */ GPUFeatureName.DEPTH24UNORM_STENCIL8 = 'depth24unorm-stencil8';
-/** @const */ GPUFeatureName.DEPTH32FLOAT_STENCIL8 = 'depth32float-stencil8';
-/** @const */ GPUFeatureName.PIPELINE_STATISTICS_QUERY = 'pipeline-statistics-query';
-/** @const */ GPUFeatureName.TEXTURE_COMPRESSION_BC = 'texture-compression-bc';
-/** @const */ GPUFeatureName.TIMESTAMP_QUERY = 'timestamp-query';
-
-/**
  * @interface
  */
 var GPUBufferUsage = function() {}
@@ -835,65 +519,14 @@ GPUBufferUsage.INDIRECT;
 GPUBufferUsage.QUERY_RESOLVE;
 
 /**
- * @constructor
- */
-var GPUAddressMode = function() {}
-
-/** @const */ GPUAddressMode.CLAMP_TO_EDGE = 'clamp-to-edge';
-/** @const */ GPUAddressMode.REPEAT = 'repeat';
-/** @const */ GPUAddressMode.MIRROR_REPEAT = 'mirror-repeat';
-
-/**
- * @constructor
- */
-var GPUFilterMode = function() {}
-
-/** @const */ GPUFilterMode.NEAREST = 'nearest';
-/** @const */ GPUFilterMode.LINEAR = 'linear';
-
-/**
- * @constructor
- */
-var GPUCompareFunction = function() {}
-
-/** @const */ GPUCompareFunction.NEVER = 'never';
-/** @const */ GPUCompareFunction.LESS = 'less';
-/** @const */ GPUCompareFunction.EQUAL = 'equal';
-/** @const */ GPUCompareFunction.LESSE_QUAL = 'less-equal';
-/** @const */ GPUCompareFunction.GREATER = 'greater';
-/** @const */ GPUCompareFunction.NOTE_QUAL = 'not-equal';
-/** @const */ GPUCompareFunction.GREATERE_QUAL = 'greater-equal';
-/** @const */ GPUCompareFunction.ALWAYS = 'always';
-
-/**
- * @constructor
- */
-var GPUStencilOperation = function() {}
-
-/** @const */ GPUStencilOperation.KEEP = 'keep';
-/** @const */ GPUStencilOperation.ZERO = 'zero';
-/** @const */ GPUStencilOperation.REPLACE = 'replace';
-/** @const */ GPUStencilOperation.INVERT = 'invert';
-/** @const */ GPUStencilOperation.INCREMENT_CLAMP = 'increment-clamp';
-/** @const */ GPUStencilOperation.DECREMENT_CLAMP = 'decrement-clamp';
-/** @const */ GPUStencilOperation.INCREMENT_WRAP = 'increment-wrap';
-/** @const */ GPUStencilOperation.DECREMENT_WRAP = 'decrement-wrap';
-
-/**
- * @constructor
- */
-var GPUPredefinedColorSpace = function() {}
-
-/** @const */ GPUPredefinedColorSpace.NEVER = 'srgb';
-
-/**
  * @interface
- * @extends {EventTarget}
+ * @extends {GPUObjectBase}
  */
 var GPUQueue = function () { };
 
 /**
  * @param {Array<GPUCommandBuffer>} commandBuffers
+ * @return {undefined}
  */
 GPUQueue.prototype.submit = function(commandBuffers) { };
 
@@ -909,6 +542,7 @@ GPUQueue.prototype.onSubmittedWorkDone = function() { };
  * @param {BufferSource} data
  * @param {number=} dataOffset
  * @param {number=} size
+ * @return {undefined}
  */
 GPUQueue.prototype.writeBuffer = function(buffer, bufferOffset, data, dataOffset, size) { };
 
@@ -917,6 +551,7 @@ GPUQueue.prototype.writeBuffer = function(buffer, bufferOffset, data, dataOffset
  * @param {BufferSource} data
  * @param {GPUImageDataLayout} dataLayout
  * @param {Array<number>|GPUExtent3DDict} size
+ * @return {undefined}
  */
 GPUQueue.prototype.writeTexture = function(destination, data, dataLayout, size) { };
 
@@ -924,11 +559,13 @@ GPUQueue.prototype.writeTexture = function(destination, data, dataLayout, size) 
  * @param {GPUImageCopyExternalImage} source
  * @param {GPUImageCopyTexture} destination
  * @param {Array<number>|GPUExtent3DDict} copySize
+ * @return {undefined}
  */
 GPUQueue.prototype.copyExternalImageToTexture = function(source, destination, copySize) { };
 
 /**
  * @interface
+ * @extends {GPUObjectBase}
  */
 var GPUBuffer = function () { };
 
@@ -947,8 +584,14 @@ GPUBuffer.prototype.mapAsync = function(mode, offset, size) { };
  */
 GPUBuffer.prototype.getMappedRange = function(offset, size) { };
 
+/**
+ * @return {undefined}
+ */
 GPUBuffer.prototype.unmap = function() { };
 
+/**
+ * @return {undefined}
+ */
 GPUBuffer.prototype.destroy = function() { };
 
 /**
@@ -984,6 +627,7 @@ GPUBufferDescriptor.prototype.mappedAtCreation;
 
 /**
  * @interface
+ * @extends {GPUObjectBase}
  */
 var GPUTexture = function () { };
 
@@ -993,6 +637,9 @@ var GPUTexture = function () { };
  */
 GPUTexture.prototype.createView = function (descriptor) { };
 
+/**
+ * @return {undefined}
+ */
 GPUTexture.prototype.destroy = function () { };
 
 /**
@@ -1002,29 +649,29 @@ GPUTexture.prototype.destroy = function () { };
 var GPUSamplerDescriptor = function () { };
 
 /**
- * @type {GPUAddressMode}
+ * @type {string}
  */
-GPUSamplerDescriptor.prototype.addressModeU;
+GPUSamplerDescriptor.prototype.addressModeU; //GPUAddressMode
 
 /**
- * @type {GPUAddressMode}
+ * @type {string}
  */
-GPUSamplerDescriptor.prototype.addressModeV;
+GPUSamplerDescriptor.prototype.addressModeV; //GPUAddressMode
 
 /**
- * @type {GPUAddressMode}
+ * @type {string}
  */
-GPUSamplerDescriptor.prototype.addressModeW;
+GPUSamplerDescriptor.prototype.addressModeW; //GPUAddressMode
 
 /**
- * @type {GPUFilterMode}
+ * @type {string}
  */
-GPUSamplerDescriptor.prototype.magFilter;
+GPUSamplerDescriptor.prototype.magFilter; //GPUFilterMode
 
 /**
- * @type {GPUFilterMode}
+ * @type {string}
  */
-GPUSamplerDescriptor.prototype.minFilter;
+GPUSamplerDescriptor.prototype.minFilter; //GPUFilterMode
 
 /**
  * @type {number}
@@ -1037,9 +684,9 @@ GPUSamplerDescriptor.prototype.lodMinClamp;
 GPUSamplerDescriptor.prototype.lodMaxClamp;
 
 /**
- * @type {GPUCompareFunction}
+ * @type {string}
  */
-GPUSamplerDescriptor.prototype.compare;
+GPUSamplerDescriptor.prototype.compare; //GPUCompareFunction
 
 /**
  * @type {number}
@@ -1048,11 +695,13 @@ GPUSamplerDescriptor.prototype.maxAnisotropy;
 
 /**
  * @interface
+ * @extends {GPUObjectBase}
  */
 var GPUSampler = function () { };
 
 /**
  * @interface
+ * @extends {GPUObjectBase}
  */
 var GPUBindGroupLayout = function () { };
 
@@ -1089,6 +738,7 @@ GPUShaderStage.prototype.COMPUTE;
 
 /**
  * @interface
+ * @extends {GPUObjectBase}
  */
 var GPUBindGroup = function () { };
 
@@ -1197,11 +847,13 @@ GPUPipelineLayoutDescriptor.prototype.bindGroupLayouts;
 
 /**
  * @interface
+ * @extends {GPUObjectBase}
  */
 var GPUPipelineLayout = function () { };
 
 /**
  * @interface
+ * @extends {GPUObjectDescriptorBase}
  */
 var GPUShaderModule = function () { };
 
@@ -1238,9 +890,9 @@ var GPUCompilationMessage = function () { };
 GPUCompilationMessage.prototype.message;
 
 /**
- * @type {GPUCompilationMessageType}
+ * @type {string}
  */
-GPUCompilationMessage.prototype.type;
+GPUCompilationMessage.prototype.type; //GPUCompilationMessageType
 
 /**
  * @type {number}
@@ -1284,9 +936,9 @@ var GPUExternalTextureDescriptor = function () { };
 GPUExternalTextureDescriptor.prototype.source;
 
 /**
- * @type {GPUPredefinedColorSpace}
+ * @type {string}
  */
-GPUExternalTextureDescriptor.prototype.colorSpace;
+GPUExternalTextureDescriptor.prototype.colorSpace; //
 
 /**
  * @record
@@ -1300,7 +952,7 @@ var GPUSwapChainDescriptor = function () { };
 GPUSwapChainDescriptor.prototype.device;
 
 /**
- * @type {string} GPUTextureFormat
+ * @type {string} //GPUTextureFormat
  */
 GPUSwapChainDescriptor.prototype.format;
 
@@ -1310,13 +962,14 @@ GPUSwapChainDescriptor.prototype.format;
 GPUSwapChainDescriptor.prototype.usage;
 
 /**
- * @type {GPUCanvasCompositingAlphaMode}
+ * @type {string}
  */
-GPUSwapChainDescriptor.prototype.compositingAlphaMode;
+GPUSwapChainDescriptor.prototype.compositingAlphaMode; //GPUCanvasCompositingAlphaMode
 
 
 /**
  * @interface
+ * @extends {GPUObjectBase}
  */
 var GPUExternalTexture = function () { };
 
@@ -1350,10 +1003,25 @@ GPUProgrammableStage.prototype.entryPoint;
 /**
  * @interface
  */
+var GPUPipelineBase = function () { };
+
+/**
+ * @param {number} index
+ * @return {GPUBindGroupLayout}
+ */
+GPUPipelineBase.prototype.getBindGroupLayout = function (index) { };
+
+/**
+ * @interface
+ * @extends {GPUObjectBase}
+ * @extends {GPUPipelineBase}
+ */
 var GPUComputePipeline = function () { };
 
 /**
  * @interface
+ * @extends {GPUObjectBase}
+ * @extends {GPUPipelineBase}
  */
 var GPURenderPipeline = function () { };
 
@@ -1498,14 +1166,14 @@ GPUCommandEncoder.prototype.finish = function (descriptor) { };
 var GPURenderBundleEncoderDescriptor = function () { };
 
 /**
- * @type {Array<GPUTextureFormat>}
+ * @type {Array<string>}
  */
-GPURenderBundleEncoderDescriptor.prototype.colorFormats;
+GPURenderBundleEncoderDescriptor.prototype.colorFormats; //GPUTextureFormat
 
 /**
- * @type {GPUTextureFormat}
+ * @type {string}
  */
-GPURenderBundleEncoderDescriptor.prototype.depthStencilFormat;
+GPURenderBundleEncoderDescriptor.prototype.depthStencilFormat; //GPUTextureFormat
 
 /**
  * @type {number}
@@ -1514,6 +1182,9 @@ GPURenderBundleEncoderDescriptor.prototype.sampleCount;
 
 /**
  * @interface
+ * @extends {GPUObjectBase}
+ * @extends {GPUProgrammablePassEncoder}
+ * @extends {GPURenderEncoderBase}
  */
 var GPURenderBundleEncoder = function () { };
 
@@ -1530,9 +1201,9 @@ GPURenderBundleEncoder.prototype.finish = function (descriptor) { };
 var GPUQuerySetDescriptor = function () { };
 
 /**
- * @type {GPUQueryType}
+ * @type {string}
  */
-GPUQuerySetDescriptor.prototype.type;
+GPUQuerySetDescriptor.prototype.type; //GPUQueryType
 
 /**
  * @type {number}
@@ -1540,15 +1211,19 @@ GPUQuerySetDescriptor.prototype.type;
 GPUQuerySetDescriptor.prototype.count;
 
 /**
- * @type {Array<GPUPipelineStatisticName>}
+ * @type {Array<string>}
  */
-GPUQuerySetDescriptor.prototype.pipelineStatistics;
+GPUQuerySetDescriptor.prototype.pipelineStatistics; //GPUPipelineStatisticName
 
 /**
  * @interface
+ * @extends {GPUObjectBase}
  */
 var GPUQuerySet = function () { };
 
+/**
+ * @return {undefined}
+ */
 GPUQuerySet.prototype.destroy = function () { };
 
 /**
@@ -1593,14 +1268,14 @@ GPUTextureDescriptor.prototype.mipLevelCount;
 GPUTextureDescriptor.prototype.sampleCount;
 
 /**
- * @type {GPUTextureDimension}
+ * @type {string}
  */
-GPUTextureDescriptor.prototype.dimension;
+GPUTextureDescriptor.prototype.dimension; //GPUTextureDimension
 
 /**
- * @type {GPUTextureFormat}
+ * @type {string}
  */
-GPUTextureDescriptor.prototype.format;
+GPUTextureDescriptor.prototype.format; //GPUTextureFormat
 
 /**
  * @type {number}
@@ -1609,6 +1284,7 @@ GPUTextureDescriptor.prototype.usage;
 
 /**
  * @interface
+ * @extends {GPUObjectDescriptorBase}
  */
 var GPUCommandBuffer = function () { };
 
@@ -1639,9 +1315,9 @@ GPUImageCopyTexture.prototype.mipLevel;
 GPUImageCopyTexture.prototype.origin;
 
 /**
- * @type {GPUTextureAspect}
+ * @type {string}
  */
-GPUImageCopyTexture.prototype.aspect;
+GPUImageCopyTexture.prototype.aspect; //GPUTextureAspect
 
 /**
  * @record
@@ -1695,6 +1371,7 @@ GPUMapMode.prototype.WRITE;
 
 /**
  * @interface
+ * @extends {GPUObjectBase}
  */
 var GPUTextureView = function () { };
 
@@ -1705,19 +1382,19 @@ var GPUTextureView = function () { };
 var GPUTextureViewDescriptor = function () { };
 
 /**
- * @type {GPUTextureFormat}
+ * @type {string}
  */
-GPUTextureViewDescriptor.prototype.format;
+GPUTextureViewDescriptor.prototype.format; //GPUTextureFormat
 
 /**
- * @type {GPUTextureViewDimension}
+ * @type {string}
  */
-GPUTextureViewDescriptor.prototype.dimension;
+GPUTextureViewDescriptor.prototype.dimension; //GPUTextureViewDimension
 
 /**
- * @type {GPUTextureAspect}
+ * @type {string}
  */
-GPUTextureViewDescriptor.prototype.aspect;
+GPUTextureViewDescriptor.prototype.aspect; //GPUTextureAspect
 
 /**
  * @type {number}
@@ -1745,9 +1422,9 @@ GPUTextureViewDescriptor.prototype.arrayLayerCount;
 var GPUBufferBindingLayout = function () { };
 
 /**
- * @type {GPUBufferBindingType}
+ * @type {string}
  */
-GPUTextureViewDescriptor.prototype.type;
+GPUTextureViewDescriptor.prototype.type; //GPUBufferBindingType
 
 /**
  * @type {boolean}
@@ -1765,9 +1442,9 @@ GPUTextureViewDescriptor.prototype.minBindingSize;
 var GPUSamplerBindingLayout = function () { };
 
 /**
- * @type {GPUSamplerBindingType}
+ * @type {string}
  */
-GPUSamplerBindingLayout.prototype.type;
+GPUSamplerBindingLayout.prototype.type; //GPUSamplerBindingType
 
 /**
  * @record
@@ -1775,14 +1452,14 @@ GPUSamplerBindingLayout.prototype.type;
 var GPUTextureBindingLayout = function () { };
 
 /**
- * @type {GPUTextureSampleType}
+ * @type {string}
  */
-GPUTextureBindingLayout.prototype.sampleType;
+GPUTextureBindingLayout.prototype.sampleType; //GPUTextureSampleType
 
 /**
- * @type {GPUTextureViewDimension}
+ * @type {string}
  */
-GPUTextureBindingLayout.prototype.viewDimension;
+GPUTextureBindingLayout.prototype.viewDimension; //GPUTextureViewDimension
 
 /**
  * @type {boolean}
@@ -1795,17 +1472,17 @@ GPUTextureBindingLayout.prototype.multisampled;
 var GPUStorageTextureBindingLayout = function () { };
 
 /**
- * @type {GPUStorageTextureAccess}
+ * @type {string}
  */
-GPUStorageTextureBindingLayout.prototype.access;
+GPUStorageTextureBindingLayout.prototype.access; //
 
 /**
- * @type {GPUTextureFormat}
+ * @type {string}
  */
-GPUStorageTextureBindingLayout.prototype.format;
+GPUStorageTextureBindingLayout.prototype.format; //GPUTextureFormat
 
 /**
- * @type {GPUTextureViewDimension}
+ * @type {string} //GPUTextureViewDimension
  */
 GPUStorageTextureBindingLayout.prototype.viewDimension;
 
@@ -1836,9 +1513,9 @@ var GPUVertexBufferLayout = function () { };
 GPUVertexState.prototype.arrayStride;
 
 /**
- * @type {GPUInputStepMode}
+ * @type {string}
  */
-GPUVertexState.prototype.stepMode;
+GPUVertexState.prototype.stepMode; //GPUInputStepMode
 
 /**
  * @type {Array<GPUVertexAttribute>}
@@ -1917,9 +1594,9 @@ GPUDepthStencilState.prototype.format; //GPUTextureFormat
 GPUDepthStencilState.prototype.depthWriteEnabled;
 
 /**
- * @type {GPUCompareFunction}
+ * @type {string}
  */
-GPUDepthStencilState.prototype.depthCompare;
+GPUDepthStencilState.prototype.depthCompare; //GPUCompareFunction
 
 /**
  * @type {GPUStencilFaceState}
@@ -2055,11 +1732,13 @@ GPUObjectBase.prototype.label; //GPUBlendOperation
 /**
  * @interface
  * @extends {GPUObjectBase}
+ * @extends {GPUProgrammablePassEncoder}
  */
 var GPUComputePassEncoder = function() { };
 
 /**
  * @param {GPUComputePipeline} pipeline
+ * @return {undefined}
  */
 GPUComputePassEncoder.prototype.setPipeline = function(pipeline) { };
 
@@ -2067,29 +1746,39 @@ GPUComputePassEncoder.prototype.setPipeline = function(pipeline) { };
  * @param {number} x
  * @param {number} y
  * @param {number} z
+ * @return {undefined}
  */
 GPUComputePassEncoder.prototype.dispatch = function(x, y, z) { };
 
 /**
  * @param {GPUBuffer} indirectBuffer
  * @param {number} indirectOffset
+ * @return {undefined}
  */
 GPUComputePassEncoder.prototype.dispatchIndirect = function(indirectBuffer, indirectOffset) { };
 
 /**
  * @param {GPUQuerySet} querySet
  * @param {number} queryIndex
+ * @return {undefined}
  */
 GPUComputePassEncoder.prototype.beginPipelineStatisticsQuery = function(querySet, queryIndex) { };
 
+/**
+ * @return {undefined}
+ */
 GPUComputePassEncoder.prototype.endPipelineStatisticsQuery = function() { };
 
 /**
  * @param {GPUQuerySet} querySet
  * @param {number} queryIndex
+ * @return {undefined}
  */
 GPUComputePassEncoder.prototype.writeTimestamp = function(querySet, queryIndex) { };
 
+/**
+ * @return {undefined}
+ */
 GPUComputePassEncoder.prototype.endPass = function() { };
 
 
@@ -2099,13 +1788,13 @@ GPUComputePassEncoder.prototype.endPass = function() { };
 var GPURenderEncoderBase = function() { };
 
 /**
- * @param {GPURenderPipeline} querySet
+ * @param {GPURenderPipeline} pipeline
  * @return {undefined}
  */
 GPURenderEncoderBase.prototype.setPipeline = function(pipeline) { };
 
 /**
- * @param {GPUBuffer} querySet
+ * @param {GPUBuffer} buffer
  * @param {string} indexFormat //GPUIndexFormat
  * @param {number=} offset
  * @param {number=} size
@@ -2305,9 +1994,9 @@ GPURenderPassColorAttachment.prototype.view;
 GPURenderPassColorAttachment.prototype.resolveTarget;
 
 /**
- * @type {GPULoadOp|Array<number>|GPUColorDict}
+ * @type {string|Array<number>|GPUColorDict}
  */
-GPURenderPassColorAttachment.prototype.loadValue;
+GPURenderPassColorAttachment.prototype.loadValue; //GPULoadOp
 
 /**
  * @type {string}
@@ -2325,14 +2014,14 @@ var GPURenderPassDepthStencilAttachment = function () { };
 GPURenderPassDepthStencilAttachment.prototype.view;
 
 /**
- * @type {GPULoadOp|number}
+ * @type {string|number}
  */
-GPURenderPassDepthStencilAttachment.prototype.depthLoadValue;
+GPURenderPassDepthStencilAttachment.prototype.depthLoadValue; //GPULoadOp
 
 /**
- * @type {GPULoadOp}
+ * @type {string}
  */
-GPURenderPassDepthStencilAttachment.prototype.depthStoreOp;
+GPURenderPassDepthStencilAttachment.prototype.depthStoreOp; //GPULoadOp
 
 /**
  * @type {boolean}
@@ -2340,14 +2029,14 @@ GPURenderPassDepthStencilAttachment.prototype.depthStoreOp;
 GPURenderPassDepthStencilAttachment.prototype.depthReadOnly;
 
 /**
- * @type {GPULoadOp|number}
+ * @type {string|number}
  */
-GPURenderPassDepthStencilAttachment.prototype.stencilLoadValue;
+GPURenderPassDepthStencilAttachment.prototype.stencilLoadValue; //GPULoadOp
 
 /**
- * @type {GPULoadOp}
+ * @type {string}
  */
-GPURenderPassDepthStencilAttachment.prototype.stencilStoreOp;
+GPURenderPassDepthStencilAttachment.prototype.stencilStoreOp; //GPULoadOp
 
 /**
  * @type {boolean}
