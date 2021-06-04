@@ -21,6 +21,7 @@
  */
 
 /**
+ * @const
  * @type {!XRSystem}
  */
 Navigator.prototype.xr;

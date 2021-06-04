@@ -26,6 +26,7 @@ modules=(
       resizeobserver
       permissions
       webxr
+      webgpu
      )
 
 BAZEL_ARTIFACT_PATH=${DIR}/bazel-bin/java/org/treblereel/gwt/elemental2/

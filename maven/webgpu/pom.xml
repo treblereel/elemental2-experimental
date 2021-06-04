@@ -4,12 +4,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.treblereel.gwt.elemental2</groupId>
-    <artifactId>webxr</artifactId>
+    <artifactId>webgpu</artifactId>
     <version>0.1</version>
     <packaging>gwt-lib</packaging>
 
-    <name>WebXR API</name>
-    <description>JsInterop wrapping for WebXR API, generated from closure-compiler externs</description>
+    <name>WebGPU API</name>
+    <description>JsInterop wrapping for WebGPU API, generated from closure-compiler externs</description>
 
     <licenses>
         <license>
@@ -71,11 +71,6 @@
             <artifactId>elemental2-dom</artifactId>
             <version>1.1.0</version>
         </dependency>
-        <dependency>
-            <groupId>com.google.elemental2</groupId>
-            <artifactId>elemental2-webgl</artifactId>
-            <version>1.1.0</version>
-        </dependency>
     </dependencies>
 
     <build>
@@ -95,7 +90,7 @@
                 <version>1.0.0</version>
                 <extensions>true</extensions>
                 <configuration>
-                    <moduleName>org.treblereel.gwt.elemental2.Webxr</moduleName>
+                    <moduleName>org.treblereel.gwt.elemental2.Webgpu</moduleName>
                 </configuration>
             </plugin>
             <plugin>
