@@ -628,7 +628,7 @@ GPUQueue.prototype.onSubmittedWorkDone = function() {};
  * @return {undefined}
  * @see https://www.w3.org/TR/webgpu/#dom-gpuqueue-writebuffer
  */
-GPUQueue.prototype.writeBuffer = function(buffer, bufferOffset, data, dataOffset, size) { };
+GPUQueue.prototype.writeBuffer = function(buffer, bufferOffset, data, dataOffset, size) {};
 
 /**
  * @param {GPUImageCopyTexture} destination
@@ -638,7 +638,7 @@ GPUQueue.prototype.writeBuffer = function(buffer, bufferOffset, data, dataOffset
  * @return {undefined}
  * @see https://www.w3.org/TR/webgpu/#dom-gpuqueue-writetexture
  */
-GPUQueue.prototype.writeTexture = function(destination, data, dataLayout, size) { };
+GPUQueue.prototype.writeTexture = function(destination, data, dataLayout, size) {};
 
 /**
  * @param {GPUImageCopyExternalImage} source
@@ -647,7 +647,7 @@ GPUQueue.prototype.writeTexture = function(destination, data, dataLayout, size) 
  * @return {undefined}
  * @see https://www.w3.org/TR/webgpu/#dom-gpuqueue-copyexternalimagetotexture
  */
-GPUQueue.prototype.copyExternalImageToTexture = function(source, destination, copySize) { };
+GPUQueue.prototype.copyExternalImageToTexture = function(source, destination, copySize) {};
 
 /**
  * @interface
@@ -1911,97 +1911,116 @@ GPUDepthStencilState.prototype.depthBiasClamp;
 
 /**
  * @record
+ * @see https://www.w3.org/TR/webgpu/#dictdef-gpumultisamplestate
  */
 var GPUMultisampleState = function() {};
 
 /**
  * @type {number}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpumultisamplestate-count
  */
 GPUMultisampleState.prototype.count;
 
 /**
  * @type {number}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpumultisamplestate-mask
  */
 GPUMultisampleState.prototype.mask;
 
 /**
  * @type {boolean}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpumultisamplestate-alphatocoverageenabled
  */
 GPUMultisampleState.prototype.alphaToCoverageEnabled;
 
 /**
  * @record
  * @extends {GPUProgrammableStage}
+ * @see https://www.w3.org/TR/webgpu/#dictdef-gpufragmentstate
  */
 var GPUFragmentState = function() {};
 
 /**
  * @type {Array<GPUColorTargetState>}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpufragmentstate-targets
  */
 GPUFragmentState.prototype.targets;
 
 /**
  * @record
+ * @see https://www.w3.org/TR/webgpu/#dictdef-gpucolortargetstate
  */
 var GPUColorTargetState = function() {};
 
 /**
  * @type {string}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpucolortargetstate-format
  */
 GPUColorTargetState.prototype.format; //GPUTextureFormat
 
 /**
  * @type {string}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpucolortargetstate-blend
  */
 GPUColorTargetState.prototype.blend; //GPUBlendState
 
 /**
  * @type {number}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpucolortargetstate-writemask
  */
 GPUColorTargetState.prototype.writeMask;
 
 /**
  * @record
+ * @see https://www.w3.org/TR/webgpu/#dictdef-gpublendstate
  */
 var GPUBlendState = function() {};
 
 /**
  * @type {GPUBlendComponent}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpublendstate-color
  */
 GPUBlendState.prototype.color;
 
 /**
  * @type {GPUBlendComponent}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpublendstate-alpha
  */
 GPUBlendState.prototype.alpha;
 
 /**
  * @record
+ * @see https://www.w3.org/TR/webgpu/#dictdef-gpublendcomponent
  */
 var GPUBlendComponent = function() {};
 
 /**
  * @type {string}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpublendcomponent-srcfactor
  */
 GPUBlendComponent.prototype.srcFactor; //GPUBlendFactor
 
 /**
  * @type {string}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpublendcomponent-dstfactor
  */
 GPUBlendComponent.prototype.dstFactor; //GPUBlendFactor
 
 /**
  * @type {string}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpublendcomponent-operation
  */
 GPUBlendComponent.prototype.operation; //GPUBlendOperation
 
 /**
  * @interface
+ * @see https://www.w3.org/TR/webgpu/#gpuobjectbase
  */
 var GPUObjectBase = function() {};
 
 /**
  * @type {string}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpuobjectbase-label
  */
 GPUObjectBase.prototype.label; //GPUBlendOperation
 
@@ -2009,12 +2028,14 @@ GPUObjectBase.prototype.label; //GPUBlendOperation
  * @interface
  * @extends {GPUObjectBase}
  * @extends {GPUProgrammablePassEncoder}
+ * @see https://www.w3.org/TR/webgpu/#gpucomputepassencoder
  */
 var GPUComputePassEncoder = function() {};
 
 /**
  * @param {GPUComputePipeline} pipeline
  * @return {undefined}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpucomputepassencoder-setpipeline
  */
 GPUComputePassEncoder.prototype.setPipeline = function(pipeline) {};
 
@@ -2023,6 +2044,7 @@ GPUComputePassEncoder.prototype.setPipeline = function(pipeline) {};
  * @param {number} y
  * @param {number} z
  * @return {undefined}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpucomputepassencoder-dispatch
  */
 GPUComputePassEncoder.prototype.dispatch = function(x, y, z) {};
 
@@ -2030,6 +2052,7 @@ GPUComputePassEncoder.prototype.dispatch = function(x, y, z) {};
  * @param {GPUBuffer} indirectBuffer
  * @param {number} indirectOffset
  * @return {undefined}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpucomputepassencoder-dispatchindirect
  */
 GPUComputePassEncoder.prototype.dispatchIndirect = function(indirectBuffer, indirectOffset) {};
 
@@ -2037,11 +2060,13 @@ GPUComputePassEncoder.prototype.dispatchIndirect = function(indirectBuffer, indi
  * @param {GPUQuerySet} querySet
  * @param {number} queryIndex
  * @return {undefined}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpucomputepassencoder-beginpipelinestatisticsquery
  */
 GPUComputePassEncoder.prototype.beginPipelineStatisticsQuery = function(querySet, queryIndex) {};
 
 /**
  * @return {undefined}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpucomputepassencoder-endpipelinestatisticsquery
  */
 GPUComputePassEncoder.prototype.endPipelineStatisticsQuery = function() {};
 
@@ -2049,22 +2074,26 @@ GPUComputePassEncoder.prototype.endPipelineStatisticsQuery = function() {};
  * @param {GPUQuerySet} querySet
  * @param {number} queryIndex
  * @return {undefined}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpucomputepassencoder-writetimestamp
  */
 GPUComputePassEncoder.prototype.writeTimestamp = function(querySet, queryIndex) {};
 
 /**
  * @return {undefined}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpucomputepassencoder-endpass
  */
 GPUComputePassEncoder.prototype.endPass = function() {};
 
 /**
  * @interface
+ * @see https://www.w3.org/TR/webgpu/#gpurenderencoderbase
  */
 var GPURenderEncoderBase = function() {};
 
 /**
  * @param {GPURenderPipeline} pipeline
  * @return {undefined}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurenderencoderbase-setpipeline
  */
 GPURenderEncoderBase.prototype.setPipeline = function(pipeline) {};
 
@@ -2074,6 +2103,7 @@ GPURenderEncoderBase.prototype.setPipeline = function(pipeline) {};
  * @param {number=} offset
  * @param {number=} size
  * @return {undefined}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurenderencoderbase-setindexbuffer
  */
 GPURenderEncoderBase.prototype.setIndexBuffer = function(buffer, indexFormat, offset, size) {};
 
@@ -2083,6 +2113,7 @@ GPURenderEncoderBase.prototype.setIndexBuffer = function(buffer, indexFormat, of
  * @param {number=} offset
  * @param {number=} size
  * @return {undefined}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurenderencoderbase-setvertexbuffer
  */
 GPURenderEncoderBase.prototype.setVertexBuffer = function(slot, buffer, offset, size) {};
 
@@ -2092,6 +2123,7 @@ GPURenderEncoderBase.prototype.setVertexBuffer = function(slot, buffer, offset, 
  * @param {number=} firstVertex
  * @param {number=} firstInstance
  * @return {undefined}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurenderencoderbase-draw
  */
 GPURenderEncoderBase.prototype.draw = function(vertexCount, instanceCount, firstVertex, firstInstance) {};
 
@@ -2102,6 +2134,7 @@ GPURenderEncoderBase.prototype.draw = function(vertexCount, instanceCount, first
  * @param {number=} baseVertex
  * @param {number=} firstInstance
  * @return {undefined}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurenderencoderbase-drawindexed
  */
 GPURenderEncoderBase.prototype.drawIndexed = function(indexCount, instanceCount, firstIndex, baseVertex, firstInstance) {};
 
@@ -2109,6 +2142,7 @@ GPURenderEncoderBase.prototype.drawIndexed = function(indexCount, instanceCount,
  * @param {GPUBuffer} indirectBuffer
  * @param {number} indirectOffset
  * @return {undefined}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurenderencoderbase-drawindirect
  */
 GPURenderEncoderBase.prototype.drawIndirect = function(indirectBuffer, indirectOffset) {};
 
@@ -2116,11 +2150,13 @@ GPURenderEncoderBase.prototype.drawIndirect = function(indirectBuffer, indirectO
  * @param {GPUBuffer} indirectBuffer
  * @param {number} indirectOffset
  * @return {undefined}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurenderencoderbase-drawindexedindirect
  */
 GPURenderEncoderBase.prototype.drawIndexedIndirect = function(indirectBuffer, indirectOffset) {};
 
 /**
  * @interface
+ * @see https://www.w3.org/TR/webgpu/#gpuprogrammablepassencoder
  */
 var GPUProgrammablePassEncoder = function() {};
 
@@ -2131,23 +2167,27 @@ var GPUProgrammablePassEncoder = function() {};
  * @param {number=} dynamicOffsetsDataStart
  * @param {number=} dynamicOffsetsDataLength
  * @return {undefined}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpuprogrammablepassencoder-setbindgroup
  */
 GPUProgrammablePassEncoder.prototype.setBindGroup = function(index, bindGroup, dynamicOffsetsData, dynamicOffsetsDataStart, dynamicOffsetsDataLength) {};
 
 /**
  * @return {undefined}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpuprogrammablepassencoder-popdebuggroup
  */
 GPUProgrammablePassEncoder.prototype.popDebugGroup = function() {};
 
 /**
  * @param {string} groupLabel
  * @return {undefined}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpuprogrammablepassencoder-pushdebuggroup
  */
 GPUProgrammablePassEncoder.prototype.pushDebugGroup = function(groupLabel) {};
 
 /**
  * @param {string} markerLabel
  * @return {undefined}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpuprogrammablepassencoder-insertdebugmarker
  */
 GPUProgrammablePassEncoder.prototype.insertDebugMarker = function(markerLabel) {};
 
@@ -2156,6 +2196,7 @@ GPUProgrammablePassEncoder.prototype.insertDebugMarker = function(markerLabel) {
  * @extends {GPUProgrammablePassEncoder}
  * @extends {GPUObjectBase}
  * @extends {GPURenderEncoderBase}
+ * @see https://www.w3.org/TR/webgpu/#gpurenderpassencoder
  */
 var GPURenderPassEncoder = function() {};
 
@@ -2167,6 +2208,7 @@ var GPURenderPassEncoder = function() {};
  * @param {number} minDepth
  * @param {number} maxDepth
  * @return {undefined}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurenderpassencoder-setviewport
  */
 GPURenderPassEncoder.prototype.setViewport = function(x, y, width, height, minDepth, maxDepth) {};
 
@@ -2176,29 +2218,34 @@ GPURenderPassEncoder.prototype.setViewport = function(x, y, width, height, minDe
  * @param {number} width
  * @param {number} height
  * @return {undefined}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurenderpassencoder-setscissorrect
  */
 GPURenderPassEncoder.prototype.setScissorRect = function(x, y, width, height) {};
 
 /**
  * @param {Array<number>|GPUColorDict} color
  * @return {undefined}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurenderpassencoder-setblendconstant
  */
 GPURenderPassEncoder.prototype.setBlendConstant = function(color) {};
 
 /**
  * @param {number} reference
  * @return {undefined}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurenderpassencoder-setstencilreference
  */
 GPURenderPassEncoder.prototype.setStencilReference = function(reference) {};
 
 /**
  * @param {number} queryIndex
  * @return {undefined}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurenderpassencoder-beginocclusionquery
  */
 GPURenderPassEncoder.prototype.beginOcclusionQuery = function(queryIndex) {};
 
 /**
  * @return {undefined}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurenderpassencoder-endocclusionquery
  */
 GPURenderPassEncoder.prototype.endOcclusionQuery = function() {};
 
@@ -2206,11 +2253,13 @@ GPURenderPassEncoder.prototype.endOcclusionQuery = function() {};
  * @param {GPUQuerySet} querySet
  * @param {number} queryIndex
  * @return {undefined}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurenderpassencoder-beginpipelinestatisticsquery
  */
 GPURenderPassEncoder.prototype.beginPipelineStatisticsQuery = function(querySet, queryIndex) {};
 
 /**
  * @return {undefined}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurenderpassencoder-endpipelinestatisticsquery
  */
 GPURenderPassEncoder.prototype.endPipelineStatisticsQuery = function() {};
 
@@ -2218,120 +2267,143 @@ GPURenderPassEncoder.prototype.endPipelineStatisticsQuery = function() {};
  * @param {GPUQuerySet} querySet
  * @param {number} queryIndex
  * @return {undefined}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurenderpassencoder-writetimestamp
  */
 GPURenderPassEncoder.prototype.writeTimestamp = function(querySet, queryIndex) {};
 
 /**
  * @param {Array<GPURenderBundle>} bundles
  * @return {undefined}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurenderpassencoder-executebundles
  */
 GPURenderPassEncoder.prototype.executeBundles = function(bundles) {};
 
 /**
  * @return {undefined}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurenderpassencoder-endpass
  */
 GPURenderPassEncoder.prototype.endPass = function() {};
 
 /**
  * @record
  * @extends {GPUObjectDescriptorBase}
+ * @see https://www.w3.org/TR/webgpu/#dictdef-gpurenderpassdescriptor
  */
 var GPURenderPassDescriptor = function() {};
 
 /**
  * @type {Array<GPURenderPassColorAttachment>}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurenderpassdescriptor-colorattachments
  */
 GPURenderPassDescriptor.prototype.colorAttachments;
 
 /**
  * @type {GPURenderPassDepthStencilAttachment}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurenderpassdescriptor-depthstencilattachment
  */
 GPURenderPassDescriptor.prototype.depthStencilAttachment;
 
 /**
  * @type {GPUQuerySet}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurenderpassdescriptor-occlusionqueryset
  */
 GPURenderPassDescriptor.prototype.occlusionQuerySet;
 
 /**
  * @record
+ * @see https://www.w3.org/TR/webgpu/#dictdef-gpurenderpasscolorattachment
  */
 var GPURenderPassColorAttachment = function() {};
 
 /**
  * @type {GPUTextureView}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurenderpasscolorattachment-view
  */
 GPURenderPassColorAttachment.prototype.view;
 
 /**
  * @type {GPUTextureView}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurenderpasscolorattachment-resolvetarget
  */
 GPURenderPassColorAttachment.prototype.resolveTarget;
 
 /**
  * @type {string|Array<number>|GPUColorDict}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurenderpasscolorattachment-loadvalue
  */
 GPURenderPassColorAttachment.prototype.loadValue; //GPULoadOp
 
 /**
  * @type {string}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurenderpasscolorattachment-storeop
  */
 GPURenderPassColorAttachment.prototype.storeOp; //GPUStoreOp
 
 /**
  * @record
+ * @see https://www.w3.org/TR/webgpu/#dictdef-gpurenderpassdepthstencilattachment
  */
 var GPURenderPassDepthStencilAttachment = function() {};
 
 /**
  * @type {GPUTextureView}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurenderpassdepthstencilattachment-view
  */
 GPURenderPassDepthStencilAttachment.prototype.view;
 
 /**
  * @type {string|number}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurenderpassdepthstencilattachment-depthloadvalue
  */
 GPURenderPassDepthStencilAttachment.prototype.depthLoadValue; //GPULoadOp
 
 /**
  * @type {string}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurenderpassdepthstencilattachment-depthstoreop
  */
 GPURenderPassDepthStencilAttachment.prototype.depthStoreOp; //GPULoadOp
 
 /**
  * @type {boolean}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurenderpassdepthstencilattachment-depthreadonly
  */
 GPURenderPassDepthStencilAttachment.prototype.depthReadOnly;
 
 /**
  * @type {string|number}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurenderpassdepthstencilattachment-stencilloadvalue
  */
 GPURenderPassDepthStencilAttachment.prototype.stencilLoadValue; //GPULoadOp
 
 /**
  * @type {string}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurenderpassdepthstencilattachment-stencilstoreop
  */
 GPURenderPassDepthStencilAttachment.prototype.stencilStoreOp; //GPULoadOp
 
 /**
  * @type {boolean}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurenderpassdepthstencilattachment-stencilreadonly
  */
 GPURenderPassDepthStencilAttachment.prototype.stencilReadOnly;
 
 /**
  * @record
  * @extends {GPUObjectDescriptorBase}
+ * @see https://www.w3.org/TR/webgpu/#dictdef-gpucomputepassdescriptor
  */
 var GPUComputePassDescriptor = function() {};
 
 /**
  * @record
  * @extends {GPUImageDataLayout}
+ * @see https://www.w3.org/TR/webgpu/#dictdef-gpuimagecopybuffer
  */
 var GPUImageCopyBuffer = function() {};
 
 /**
  * @type {GPUBuffer}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpuimagecopybuffer-buffer
  */
 GPUImageCopyBuffer.prototype.buffer;
 
