@@ -280,7 +280,7 @@ GPUAdapter.prototype.features;
 
 /**
  * @const
- * @type {GPUAdapterLimits}
+ * @type {GPUSupportedLimits}
  * @see https://www.w3.org/TR/webgpu/#dom-gpuadapter-limits
  */
 GPUAdapter.prototype.limits;
@@ -328,7 +328,7 @@ GPUDevice.prototype.features;
 
 /**
  * @const
- * @type {GPUAdapterLimits}
+ * @type {GPUSupportedLimits}
  * @see https://www.w3.org/TR/webgpu/#dom-gpudevice-limits
  */
 GPUDevice.prototype.limits;
