@@ -20,13 +20,14 @@ DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
 modules=(
       pointerlock
-      filesystem
+      #filesystem
       gamepad
       proxy
       resizeobserver
       permissions
       webxr
       webgpu
+      webshare
      )
 
 BAZEL_ARTIFACT_PATH=${DIR}/bazel-bin/java/org/treblereel/gwt/elemental2/
