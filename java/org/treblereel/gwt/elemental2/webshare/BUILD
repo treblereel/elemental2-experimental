@@ -11,12 +11,12 @@ package(
 )
 
 jsinterop_generator(
-    name = "proxy",
-    srcs = ["//third_party:es6_proxy.js"],
+    name = "webshare",
+    srcs = ["web-share.js"],
     # override auto generated js_deps in order not to provide extern files
     # Common extern file are included by default.
     j2cl_js_deps = [],
     deps = [
-        "//third_party:elemental2-core",
+        "//third_party:elemental2-dom",
     ],
 )
