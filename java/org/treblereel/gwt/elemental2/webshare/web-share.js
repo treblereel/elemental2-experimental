@@ -2,8 +2,6 @@
  * @externs
  */
 
-
-
 /**
  * @param {ShareData=} data
  */
