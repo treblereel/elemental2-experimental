@@ -53,19 +53,20 @@ XRSessionInit.prototype.optionalFeatures;
 var XRSystem = function () { };
 
 /**
- * @param {XRSessionMode} mode
+ * @param {string} mode
  * @return {Promise<boolean>}
  */
 XRSystem.prototype.isSessionSupported = function (mode) { };
 
 /**
- * @param {XRSessionMode} mode
+ * @param {string} mode
  * @param {XRSessionInit=} opt_XRSessionInit
  * @return {Promise<XRSession>}
  */
 XRSystem.prototype.requestSession = function (mode, opt_XRSessionInit) { };
 
-/** @type {?function (Event)} */ XRSystem.prototype.ondevicechange;
+/** @type {?function (Event)} */
+XRSystem.prototype.ondevicechange;
 
 /**
  * @record
@@ -206,23 +207,23 @@ XRReferenceSpaceEvent.prototype.referenceSpace;
  */
 XRReferenceSpaceEvent.prototype.transform;
 
-/**
- * @enum
- */
-var XRSessionMode = {
-  IMMERSIVEAR: 'immersive-ar',
-  IMMERSIVEVR: 'immersive-vr',
-  INLINE: 'inline'
-};
+/** @enum {string} */
+// This is commented out since it has not been implemented.
+// Uncomment once it is available.
+//var XRSessionMode = {
+//  IMMERSIVEAR: 'immersive-ar',
+//  IMMERSIVEVR: 'immersive-vr',
+//  INLINE: 'inline'
+//};
 
-/**
- * @enum
- */
-var XRVisibilityState = {
-  VISIBLE: 'visible',
-  VISIBLEBLURRED: 'visible-blurred',
-  HIDDEN: 'hidden'
-};
+/** @enum {string} */
+// This is commented out since it has not been implemented.
+// Uncomment once it is available.
+//var XRVisibilityState = {
+//  VISIBLE: 'visible',
+//  VISIBLEBLURRED: 'visible-blurred',
+//  HIDDEN: 'hidden'
+//};
 
 /**
 * @interface
@@ -232,7 +233,7 @@ var XRSession = function () { };
 
 /**
  * @const
- * @type {XRVisibilityState}
+ * @type {string}
  */
 XRSession.prototype.visibilityState;
 
@@ -287,40 +288,40 @@ var XRFrameRequestCallback;
 XRSession.prototype.requestAnimationFrame = function (callback) { }
 
 /**
- * @param {XRReferenceSpaceType} referenceSpaceType
+ * @param {string} referenceSpaceType
  * @return {Promise<XRReferenceSpace|XRBoundedReferenceSpace>}
  * @throws {!NotSupportedError}
  */
 XRSession.prototype.requestReferenceSpace = function (referenceSpaceType) { };
 
-/**
- * @enum
- */
-var XRReferenceSpaceType = {
-  BOUNDEDFLOOR: 'bounded-floor',
-  LOCAL: 'local',
-  LOCALFLOOR: 'local-floor',
-  UNBOUNDED: 'unbounded',
-  VIEWER: 'viewer'
-};
+/** @enum {string} */
+// This is commented out since it has not been implemented.
+// Uncomment once it is available.
+//var XRReferenceSpaceType = {
+//  BOUNDEDFLOOR: 'bounded-floor',
+//  LOCAL: 'local',
+//  LOCALFLOOR: 'local-floor',
+//  UNBOUNDED: 'unbounded',
+//  VIEWER: 'viewer'
+//};
 
-/**
- * @enum
- */
-var XRHandedness = {
-  NONE: 'none',
-  LEFT: 'left',
-  RIGHT: 'right',
-  };
+/** @enum {string} */
+// This is commented out since it has not been implemented.
+// Uncomment once it is available.
+//var XRHandedness = {
+//  NONE: 'none',
+//  LEFT: 'left',
+//  RIGHT: 'right',
+//  };
 
-/**
- * @enum
- */
-var XRTargetRayMode = {
-  GAZE: 'gaze',
-  TRACKEDPOINTER: 'tracked-pointer',
-  SCREEN: 'screen',
-  };
+/** @enum {string} */
+// This is commented out since it has not been implemented.
+// Uncomment once it is available.
+//var XRTargetRayMode = {
+//  GAZE: 'gaze',
+//  TRACKEDPOINTER: 'tracked-pointer',
+//  SCREEN: 'screen',
+//  };
 
 /**
 * @interface
@@ -335,7 +336,7 @@ XRInputSource.prototype.gripSpace;
 
 /**
  * @const
- * @type {XRHandedness}
+ * @type {string}
  */
 XRInputSource.prototype.handedness;
 
@@ -347,7 +348,7 @@ XRInputSource.prototype.profiles;
 
 /**
  * @const
- * @type {XRTargetRayMode}
+ * @type {string}
  */
 XRInputSource.prototype.targetRayMode;
 
@@ -358,9 +359,9 @@ XRInputSource.prototype.targetRayMode;
 XRInputSource.prototype.targetRaySpace;
 
 /**
-* @interface
+ * @interface
  * @extends {Iterable<XRInputSource>}
-*/
+ */
 var XRInputSourceArray = function () { };
 
 /**
@@ -466,14 +467,14 @@ XRPose.prototype.linearVelocity;
  */
 XRPose.prototype.angularVelocity;
 
-/**
- * @enum
- */
-var XREye = {
-  NONE: 'none',
-  LEFT: 'left',
-  RIGHT: 'right',
-  };
+/** @enum {string} */
+// This is commented out since it has not been implemented.
+// Uncomment once it is available.
+//var XREye = {
+//  NONE: 'none',
+//  LEFT: 'left',
+//  RIGHT: 'right',
+//  };
 
 /**
  * @interface
@@ -482,7 +483,7 @@ var XRView = function () { };
 
 /**
  * @const
- * @type {XREye}
+ * @type {string}
  */
 XRView.prototype.eye;
 
@@ -573,6 +574,12 @@ XRFrame.prototype.getPose = function (space, baseSpace) { };
  * @return {XRViewerPose}
  */
 XRFrame.prototype.getViewerPose = function (referenceSpace) { };
+
+/**
+ * @const
+ * @type {number}
+ */
+XRFrame.prototype.predictedDisplayTime;
 
 /**
  * @interface
@@ -707,7 +714,7 @@ XRWebGLLayer.prototype.getViewport = function (view) { };
  * @static
  * @return {number}
  */
-XRWebGLLayer.prototype.getNativeFramebufferScaleFactor = function () { };
+XRWebGLLayer.getNativeFramebufferScaleFactor = function () { };
 
 /**
  * @constructor
