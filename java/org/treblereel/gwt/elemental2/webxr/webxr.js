@@ -698,9 +698,10 @@ XRWebGLLayer.prototype.framebufferHeight;
 XRWebGLLayer.prototype.ignoreDepthValues;
 
 /**
+ * @param {XRView} view
  * @return {XRViewport}
  */
-XRWebGLLayer.prototype.getViewport = function () { };
+XRWebGLLayer.prototype.getViewport = function (view) { };
 
 /**
  * @static
