@@ -29,6 +29,7 @@ jsinterop_generator(
     deps = [
         "//third_party:elemental2-core",
         "//third_party:elemental2-dom",
+        "//third_party:elemental2-promise",
         "//third_party:elemental2-webgl",
     ],
 )
