@@ -1,0 +1,102 @@
+--- original.js	2022-01-03 14:12:46.000000000 -0800
++++ w3c_audio.js	2022-01-03 14:34:54.000000000 -0800
+@@ -194,6 +194,28 @@
+  */
+ BaseAudioContext.prototype.createSpatialPanner = function() {};
+ 
++
++/**
++ * @param {string} type
++ * @param {EventListener} listener
++ * @param {(boolean|!AddEventListenerOptions)=} opt_options
++ * @return {undefined}
++ * @this {THIS}
++ * @template THIS
++ */
++BaseAudioContext.prototype.addEventListener = function(type, listener, opt_options) {};
++
++/**
++ * @param {string} type
++ * @param {EventListener} listener
++ * @param {(boolean|!EventListenerOptions)=} opt_options
++ * @return {undefined}
++ * @this {THIS}
++ * @template THIS
++ */
++BaseAudioContext.prototype.removeEventListener = function(
++     type, listener, opt_options) {};
++
+ /**
+  * @record
+  * @see https://webaudio.github.io/web-audio-api/#idl-def-AudioContextOptions
+@@ -290,18 +312,30 @@
+ 
+ /**
+  * @override
++ * @param {string} type
++ * @param {EventListener} listener
++ * @param {(boolean|!AddEventListenerOptions)=} opt_options
++ * @return {undefined}
++ * @this {THIS}
++ * @template THIS
+  */
+-AudioNode.prototype.addEventListener = function(type, listener,
+-    opt_useCapture) {};
++AudioNode.prototype.addEventListener = function(type, listener, opt_options) {};
+ 
+ /**
+  * @override
++ * @param {string} type
++ * @param {EventListener} listener
++ * @param {(boolean|!EventListenerOptions)=} opt_options
++ * @return {undefined}
++ * @this {THIS}
++ * @template THIS
+  */
+-AudioNode.prototype.removeEventListener = function(type, listener,
+-    opt_useCapture) {};
++AudioNode.prototype.removeEventListener = function(
++     type, listener, opt_options) {};
+ 
+ /**
+  * @override
++ * @param {!Event} evt
+  * @return {boolean}
+  */
+ AudioNode.prototype.dispatchEvent = function(evt) {};
+@@ -1475,35 +1509,11 @@
+ /**
+  * @constructor
+  * @see https://www.w3.org/TR/webaudio/#audioworklet
+- * @implements {Worklet}
+  */
+ function AudioWorklet() {}
+ 
+ /**
+  * @constructor
+- * @see https://www.w3.org/TR/webaudio/#audioworkletglobalscope
+- * @implements {WorkletGlobalScope}
+- */
+-function AudioWorkletGlobalScope() {}
+-
+-/** @type {number} */
+-AudioWorkletGlobalScope.prototype.currentFrame;
+-
+-/** @type {number} */
+-AudioWorkletGlobalScope.prototype.currentTime;
+-
+-/** @type {number} */
+-AudioWorkletGlobalScope.prototype.sampleRate;
+-
+-/**
+- * @param {!string} name
+- * @param {!function()} processorCtor
+- */
+-AudioWorkletGlobalScope.prototype.registerProcessor = function(
+-    name, processorCtor) {};
+-
+-/**
+- * @constructor
+  * @extends {AudioNode}
+  * @param {!BaseAudioContext} context
+  * @param {string} name
