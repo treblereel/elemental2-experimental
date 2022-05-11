@@ -5,7 +5,7 @@
 
     <groupId>org.treblereel.gwt.elemental2</groupId>
     <artifactId>webgpu</artifactId>
-    <version>0.1</version>
+    <version>0.2</version>
     <packaging>gwt-lib</packaging>
 
     <name>WebGPU API</name>
