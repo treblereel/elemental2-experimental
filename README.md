@@ -1,3 +1,17 @@
+# Set of missed elemental2-like artifacts:
+
+* audio
+* pointerlock
+* gamepad
+* proxy
+* resizeobserver
+* permissions
+* webxr
+* webgpu
+* webshare
+
+
+
 # elemental2-pointerlock
 
 Generated JsInterop types for J2CL projects to use when interacting with the Pointer lock API. This project
