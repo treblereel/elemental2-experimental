@@ -551,6 +551,7 @@ XRViewport.prototype.width;
  */
 XRViewport.prototype.height;
 
+
 /**
 * @interface
 */
@@ -629,35 +630,6 @@ XRRenderState.prototype.depthNear;
 XRRenderState.prototype.inlineVerticalFieldOfView;
 
 /**
-* @interface
-*/
-var XRViewport = function () { };
-
-/**
- * @const
- * @type {number}
- */
-XRViewport.prototype.height;
-
-/**
- * @const
- * @type {number}
- */
-XRViewport.prototype.width;
-
-/**
- * @const
- * @type {number}
- */
-XRViewport.prototype.x;
-
-/**
- * @const
- * @type {number}
- */
-XRViewport.prototype.y;
-
-/**
  * @constructor
  * @param {XRSession} session
  * @param {WebGLRenderingContext} context
@@ -666,13 +638,36 @@ XRViewport.prototype.y;
  */
 var XRWebGLLayer = function (session, context, layerInit) { };
 
-/** @override */
-XRWebGLLayer.prototype.addEventListener = function(
-    type, listener, opt_options) {};
+/**
+ * @override
+ * @param {string} type
+ * @param {EventListener} listener
+ * @param {(boolean|!AddEventListenerOptions)=} opt_options
+ * @return {undefined}
+ * @this {THIS}
+ * @template THIS
+ */
+XRWebGLLayer.prototype.addEventListener = function(type, listener,
+        opt_useCapture) {};
 
-/** @override */
+/**
+ * @override
+ * @param {string} type
+ * @param {EventListener} listener
+ * @param {(boolean|!EventListenerOptions)=} opt_options
+ * @return {undefined}
+ * @this {THIS}
+ * @template THIS
+ */
 XRWebGLLayer.prototype.removeEventListener = function(
-    type, listener, opt_options) {};
+         type, listener, opt_options) {};
+
+/**
+ * @override
+ * @param {!Event} evt
+ * @return {boolean}
+ */
+XRWebGLLayer.prototype.dispatchEvent = function(evt) {};
 
 /**
  * @const

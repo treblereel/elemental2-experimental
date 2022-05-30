@@ -14,16 +14,14 @@ package(
 )
 
 jsinterop_generator(
-    name = "webxr",
-    extension_type_prefix = "WebXR",
-    srcs = ["webxr.js"],
-    # override auto generated js_deps in order not to provide extern files
-    # Common extern file are included by default.
+    name = "webxr-hand-input",
+    srcs = ["webxr-hand-input.js"],
+    extension_type_prefix = "WebXRHandInput",
+    package_prefix = "org.treblereel.gwt.elemental2.webxr",
     j2cl_js_deps = [],
     deps = [
         "//third_party:elemental2-core",
         "//third_party:elemental2-dom",
-        "//third_party:elemental2-promise",
-        "//third_party:elemental2-webgl",
+        "//java/org/treblereel/gwt/elemental2/webxr:webxr"
     ],
 )
