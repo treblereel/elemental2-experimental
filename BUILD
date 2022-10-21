@@ -20,5 +20,6 @@ jsinterop_generator(
     "//java/org/treblereel/gwt/elemental2/proxy:proxy",
     "//java/org/treblereel/gwt/elemental2/permissions:permissions",
     "//java/org/treblereel/gwt/elemental2/audio:audio",
+    "//java/org/treblereel/gwt/elemental2/clipboard:clipboard",
     ],
 )
