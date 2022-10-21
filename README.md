@@ -1,6 +1,7 @@
 # Set of missed elemental2-like artifacts:
 
 * audio
+* clipboard
 * pointerlock
 * gamepad
 * proxy
@@ -45,3 +46,5 @@ uses the same mechanism as [elemental2](https://github.com/google/elemental2/) t
             }
         });
 ```
+
+and so on ...
