@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 The Closure Compiler Authors.
+ * Copyright 2022 The Closure Compiler Authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,24 +21,10 @@
  */
 
 /**
- * @const
- * @type {!GPU}
+ * @const {!GPU}
  * @see https://www.w3.org/TR/webgpu/#navigatorgpu
  */
 Navigator.prototype.gpu;
-
-/**
- * @interface
- * @see https://www.w3.org/TR/webgpu/#gpucanvascontext
- */
-var GPUCanvasContext = function() {};
-
-/**
- * @type {HTMLCanvasElement}
- * @see https://www.w3.org/TR/webgpu/#dom-gpucanvascontext-canvas
- */
-GPUCanvasContext.prototype.canvas;
-
 
 /**
  * @record
@@ -72,15 +58,21 @@ GPUCanvasConfiguration.prototype.colorSpace;
 
 /**
  * @type {string}
- * @see https://www.w3.org/TR/webgpu/#enumdef-gpucanvascompositingalphamode
+ * @see https://www.w3.org/TR/webgpu/#enumdef-gpupredefinedcolorspace
  */
-GPUCanvasConfiguration.prototype.compositingAlphaMode;
+GPUCanvasConfiguration.prototype.alphaMode;
 
 /**
- * @type {number}
- * @see https://www.w3.org/TR/webgpu/#typedefdef-gpuextent3d
+ * @interface
+ * @see https://www.w3.org/TR/webgpu/#gpucanvascontext
  */
-GPUCanvasConfiguration.prototype.size;
+var GPUCanvasContext = function() {};
+
+/**
+ * @type {HTMLCanvasElement|OffscreenCanvas}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpucanvascontext-canvas
+ */
+GPUCanvasContext.prototype.canvas;
 
 /**
  * @param {!GPUCanvasConfiguration} configuration
@@ -93,13 +85,6 @@ GPUCanvasContext.prototype.configure = function(configuration) {}
  * @see https://www.w3.org/TR/webgpu/#dom-gpucanvascontext-unconfigure
  */
 GPUCanvasContext.prototype.unconfigure = function() {}
-
-/**
- * @param {!GPUAdapter} adapter
- * @return {!string}
- * @see https://www.w3.org/TR/webgpu/#dom-gpucanvascontext-getcurrenttexture
- */
-GPUCanvasContext.prototype.getPreferredFormat = function(adapter) {}
 
 /**
  * @return {!GPUTexture}
@@ -117,13 +102,13 @@ var GPURequestAdapterOptions = function() {};
  * @type {string}
  * @see https://www.w3.org/TR/webgpu/#enumdef-gpupowerpreference
  */
-GPURequestAdapterOptions.prototype.powerPreference //GPUPowerPreference
+GPURequestAdapterOptions.prototype.powerPreference;
 
 /**
  * @type {boolean}
  * @see https://www.w3.org/TR/webgpu/#dom-gpurequestadapteroptions-forcefallbackadapter
  */
-GPURequestAdapterOptions.prototype.forceFallbackAdapter
+GPURequestAdapterOptions.prototype.forceFallbackAdapter;
 
 /**
  * @record
@@ -145,7 +130,7 @@ GPUObjectDescriptorBase.prototype.label
 var GPUPipelineDescriptorBase = function() {};
 
 /**
- * @type {GPUPipelineLayout}
+ * @type {GPUPipelineLayout|string}
  * @see https://www.w3.org/TR/webgpu/#dom-gpupipelinedescriptorbase-layout
  */
 GPUPipelineDescriptorBase.prototype.layout
@@ -163,6 +148,11 @@ var GPU = function() {};
  */
 GPU.prototype.requestAdapter = function (opt_GPURequestAdapterOptions) {};
 
+/**
+ * @return {string}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpu-getpreferredcanvasformat
+ */
+GPU.prototype.getPreferredCanvasFormat = function() {};
 
 /**
  * @interface
@@ -200,113 +190,97 @@ GPUSupportedFeatures.prototype[Symbol.iterator] = function() {};
 var GPUSupportedLimits = function() {};
 
 /**
- * @const
- * @type {number}
+ * @const {number}
  * @see https://www.w3.org/TR/webgpu/#dom-gpusupportedlimits-maxtexturedimension1d
  */
  GPUSupportedLimits.prototype.maxTextureDimension1D;
 
 /**
- * @const
- * @type {number}
+ * @const {number}
  * @see https://www.w3.org/TR/webgpu/#dom-gpusupportedlimits-maxtexturedimension2d
  */
  GPUSupportedLimits.prototype.maxTextureDimension2D;
 
 /**
- * @const
- * @type {number}
+ * @const {number}
  * @see https://www.w3.org/TR/webgpu/#dom-gpusupportedlimits-maxtexturedimension3d
  */
  GPUSupportedLimits.prototype.maxTextureDimension3D;
 
 /**
- * @const
- * @type {number}
+ * @const {number}
  * @see https://www.w3.org/TR/webgpu/#dom-gpusupportedlimits-maxtexturearraylayers
  */
  GPUSupportedLimits.prototype.maxTextureArrayLayers;
 
 /**
- * @const
- * @type {number}
+ * @const {number}
  * @see https://www.w3.org/TR/webgpu/#dom-gpusupportedlimits-maxdynamicuniformbuffersperpipelinelayout
  */
  GPUSupportedLimits.prototype.maxDynamicUniformBuffersPerPipelineLayout;
 
 /**
- * @const
- * @type {number}
+ * @const {number}
  * @see https://www.w3.org/TR/webgpu/#dom-gpusupportedlimits-maxdynamicstoragebuffersperpipelinelayout
  */
  GPUSupportedLimits.prototype.maxDynamicStorageBuffersPerPipelineLayout;
 
 /**
- * @const
- * @type {number}
+ * @const {number}
  * @see https://www.w3.org/TR/webgpu/#dom-gpusupportedlimits-maxsampledtexturespershaderstage
  */
  GPUSupportedLimits.prototype.maxSampledTexturesPerShaderStage;
 
 /**
- * @const
- * @type {number}
+ * @const {number}
  * @see https://www.w3.org/TR/webgpu/#dom-gpusupportedlimits-maxsamplerspershaderstage
  */
  GPUSupportedLimits.prototype.maxSamplersPerShaderStage;
 
 /**
- * @const
- * @type {number}
+ * @const {number}
  * @see https://www.w3.org/TR/webgpu/#dom-gpusupportedlimits-maxstoragebufferspershaderstage
  */
  GPUSupportedLimits.prototype.maxStorageBuffersPerShaderStage;
 
 /**
- * @const
- * @type {number}
+ * @const {number}
  * @see https://www.w3.org/TR/webgpu/#dom-gpusupportedlimits-maxstoragetexturespershaderstage
  */
  GPUSupportedLimits.prototype.maxStorageTexturesPerShaderStage;
 
 /**
- * @const
- * @type {number}
+ * @const {number}
  * @see https://www.w3.org/TR/webgpu/#dom-gpusupportedlimits-maxuniformbufferspershaderstage
  */
  GPUSupportedLimits.prototype.maxUniformBuffersPerShaderStage;
 
 /**
- * @const
- * @type {number}
+ * @const {number}
  * @see https://www.w3.org/TR/webgpu/#dom-gpusupportedlimits-maxuniformbufferbindingsize
  */
  GPUSupportedLimits.prototype.maxUniformBufferBindingSize;
 
 /**
- * @const
- * @type {number}
+ * @const {number}
  * @see https://www.w3.org/TR/webgpu/#dom-gpusupportedlimits-maxstoragebufferbindingsize
  */
  GPUSupportedLimits.prototype.maxStorageBufferBindingSize;
 
 /**
- * @const
- * @type {number}
+ * @const {number}
  * @see https://www.w3.org/TR/webgpu/#dom-gpusupportedlimits-maxvertexbuffers
  */
  GPUSupportedLimits.prototype.maxVertexBuffers;
 
 /**
- * @const
- * @type {number}
+ * @const {number}
  * @see https://www.w3.org/TR/webgpu/#dom-gpusupportedlimits-maxvertexattributes
  */
  GPUSupportedLimits.prototype.maxVertexAttributes;
 
 /**
- * @const
- * @type {number}
+ * @const {number}
  * @see https://www.w3.org/TR/webgpu/#dom-gpusupportedlimits-maxvertexbufferarraystride
  */
  GPUSupportedLimits.prototype.maxVertexBufferArrayStride;
@@ -318,32 +292,68 @@ var GPUSupportedLimits = function() {};
 var GPUAdapter = function() {};
 
 /**
- * @const
- * @type {string}
- * @see https://www.w3.org/TR/webgpu/#dom-gpuadapter-name
- */
-GPUAdapter.prototype.name;
-
-/**
- * @const
- * @type {GPUSupportedFeatures}
+ * @const {GPUSupportedFeatures}
  * @see https://www.w3.org/TR/webgpu/#dom-gpuadapter-features
  */
 GPUAdapter.prototype.features;
 
 /**
- * @const
- * @type {GPUSupportedLimits}
+ * @const {GPUSupportedLimits}
  * @see https://www.w3.org/TR/webgpu/#dom-gpuadapter-limits
  */
 GPUAdapter.prototype.limits;
+
+/**
+ * @const {boolean}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpuadapter-isfallbackadapter
+ */
+GPUAdapter.prototype.isFallbackAdapter;
 
 /**
  * @param {GPUDeviceDescriptor=} opt_GPUDeviceDescriptor
  * @return {Promise<GPUDevice>}
  * @see https://www.w3.org/TR/webgpu/#dom-gpuadapter-requestdevice
  */
-GPUAdapter.prototype.requestDevice = function (opt_GPUDeviceDescriptor) { };
+GPUAdapter.prototype.requestDevice = function (opt_GPUDeviceDescriptor) {};
+
+/**
+ * @param {Array<string>=} unmaskHints
+ * @return {Promise<GPUAdapterInfo>}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpuadapter-requestadapterinfo
+ */
+GPUAdapter.prototype.requestAdapterInfo = function (unmaskHints) {};
+
+
+/**
+ * @interface
+ * @see https://www.w3.org/TR/webgpu/#gpuadapterinfo
+ */
+var GPUAdapterInfo = function() {};
+
+/**
+ * @const {string}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpuadapterinfo-vendor
+ */
+GPUAdapterInfo.prototype.vendor;
+
+/**
+ * @const {string}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpuadapterinfo-architecture
+ */
+GPUAdapterInfo.prototype.architecture;
+
+/**
+ * @const {string}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpuadapterinfo-device
+ */
+GPUAdapterInfo.prototype.device;
+
+/**
+ * @const {string}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpuadapterinfo-description
+ */
+GPUAdapterInfo.prototype.description;
+
 
 /**
  * @record
@@ -356,13 +366,27 @@ var GPUDeviceDescriptor = function() {};
  * @type {Array<string>}
  * @see https://www.w3.org/TR/webgpu/#dom-gpudevicedescriptor-requiredfeatures
  */
-GPUDeviceDescriptor.prototype.requiredfeatures; //GPUFeatureName
+GPUDeviceDescriptor.prototype.requiredFeatures;
 
 /**
  * @type {Map<string, number>}
  * @see https://www.w3.org/TR/webgpu/#dom-gpudevicedescriptor-requiredlimits
  */
 GPUDeviceDescriptor.prototype.requiredLimits;
+
+/**
+ * @type {GPUQueueDescriptor}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpudevicedescriptor-defaultqueue
+ */
+GPUDeviceDescriptor.prototype.defaultQueue;
+
+
+/**
+ * @record
+ * @extends {GPUObjectDescriptorBase}
+ * @see https://www.w3.org/TR/webgpu/#dictdef-gpupipelinedescriptorbase
+ */
+var GPUQueueDescriptor = function() {};
 
 /**
  * @interface
@@ -373,22 +397,19 @@ GPUDeviceDescriptor.prototype.requiredLimits;
 var GPUDevice = function() {};
 
 /**
- * @const
- * @type {GPUSupportedFeatures}
+ * @const {GPUSupportedFeatures}
  * @see https://www.w3.org/TR/webgpu/#dom-gpudevice-features
  */
 GPUDevice.prototype.features;
 
 /**
- * @const
- * @type {GPUSupportedLimits}
+ * @const {GPUSupportedLimits}
  * @see https://www.w3.org/TR/webgpu/#dom-gpudevice-limits
  */
 GPUDevice.prototype.limits;
 
 /**
- * @const
- * @type {GPUQueue}
+ * @const {GPUQueue}
  * @see https://www.w3.org/TR/webgpu/#dom-gpudevice-queue
  */
 GPUDevice.prototype.queue;
@@ -577,77 +598,68 @@ GPUOrigin3DDict.prototype.y
 GPUOrigin3DDict.prototype.z
 
 /**
- * @interface
+ * @constructor
+ * @private
  * @see https://www.w3.org/TR/webgpu/#gpubufferusage
  */
 var GPUBufferUsage = function() {}
 
 /**
- * @const
- * @type {number}
+ * @const {number}
  * @see https://www.w3.org/TR/webgpu/#dom-gpubufferusage-map_read
  */
 GPUBufferUsage.MAP_READ;
 
 /**
- * @const
- * @type {number}
+ * @const {number}
  * @see https://www.w3.org/TR/webgpu/#dom-gpubufferusage-map_write
  */
 GPUBufferUsage.MAP_WRITE;
 
 /**
- * @const
- * @type {number}
+ * @const {number}
  * @see https://www.w3.org/TR/webgpu/#dom-gpubufferusage-copy_src
  */
 GPUBufferUsage.COPY_SRC;
 
 /**
- * @const
- * @type {number}
+ * @const {number}
  * @see https://www.w3.org/TR/webgpu/#dom-gpubufferusage-copy_dst
  */
 GPUBufferUsage.COPY_DST;
 
 /**
- * @const
- * @type {number}
+ * @const {number}
  * @see https://www.w3.org/TR/webgpu/#dom-gpubufferusage-index
  */
 GPUBufferUsage.INDEX;
 
 /**
- * @const
- * @type {number}
+ * @const {number}
  * @see https://www.w3.org/TR/webgpu/#dom-gpubufferusage-vertex
  */
 GPUBufferUsage.VERTEX;
 
 /**
- * @const
- * @type {number}
+ * @const {number}
  * @see https://www.w3.org/TR/webgpu/#dom-gpubufferusage-uniform
  */
 GPUBufferUsage.UNIFORM;
 
 /**
- * @const
- * @type {number}
+ * @const {number}
  * @see https://www.w3.org/TR/webgpu/#dom-gpubufferusage-storage
  */
 GPUBufferUsage.STORAGE;
 
 /**
- * @const
- * @type {number}
+ * @const {number}
  * @see https://www.w3.org/TR/webgpu/#dom-gpubufferusage-indirect
  */
 GPUBufferUsage.INDIRECT;
 
 /**
- * @const
- * @type {number}
+ * @const {number}
  * @see https://www.w3.org/TR/webgpu/#dom-gpubufferusage-query_resolve
  */
 GPUBufferUsage.QUERY_RESOLVE;
@@ -708,6 +720,24 @@ GPUQueue.prototype.copyExternalImageToTexture = function(source, destination, co
  * @see https://www.w3.org/TR/webgpu/#gpubuffer
  */
 var GPUBuffer = function() {};
+
+/**
+ * @const {number}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpubuffer-size
+ */
+GPUBuffer.prototype.size;
+
+/**
+ * @const {number}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpubuffer-usage
+ */
+GPUBuffer.prototype.usage;
+
+/**
+ * @const {string}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpubuffer-mapState
+ */
+GPUBuffer.prototype.mapState;
 
 /**
  * @param {number} mode
@@ -784,6 +814,77 @@ GPUTexture.prototype.createView = function(descriptor) {};
 GPUTexture.prototype.destroy = function() {};
 
 /**
+ * @const {number}
+ * @see https://www.w3.org/TR/webgpu/#dom-gputexture-width
+ */
+GPUTexture.prototype.width;
+
+/**
+ * @const {number}
+ * @see https://www.w3.org/TR/webgpu/#dom-gputexture-height
+ */
+GPUTexture.prototype.height;
+
+/**
+ * @const {number}
+ * @see https://www.w3.org/TR/webgpu/#dom-gputexture-depthOrArrayLayers
+ */
+GPUTexture.prototype.depthOrArrayLayers;
+
+/**
+ * @const {number}
+ * @see https://www.w3.org/TR/webgpu/#dom-gputexture-mipLevelCount
+ */
+GPUTexture.prototype.mipLevelCount;
+
+/**
+ * @const {number}
+ * @see https://www.w3.org/TR/webgpu/#dom-gputexture-sampleCount
+ */
+GPUTexture.prototype.sampleCount;
+
+/**
+ * @const {string}
+ * @see https://www.w3.org/TR/webgpu/#dom-gputexture-dimension
+ */
+GPUTexture.prototype.dimension;
+
+/**
+ * @const {string}
+ * @see https://www.w3.org/TR/webgpu/#dom-gputexture-format
+ */
+GPUTexture.prototype.format;
+
+/**
+ * @const {number}
+ * @see https://www.w3.org/TR/webgpu/#dom-gputexture-usage
+ */
+GPUTexture.prototype.usage;
+
+/**
+ *
+ * @constructor
+ * @private
+ * @see https://www.w3.org/TR/webgpu/#namespacedef-gputextureusage
+ */
+var GPUTextureUsage = function () {}
+
+/** @const {number} */
+GPUTextureUsage.COPY_SRC;
+
+/** @const {number} */
+GPUTextureUsage.COPY_DST;
+
+/** @const {number} */
+GPUTextureUsage.TEXTURE_BINDING;
+
+/** @const {number} */
+GPUTextureUsage.STORAGE_BINDING;
+
+/** @const {number} */
+GPUTextureUsage.RENDER_ATTACHMENT;
+
+/**
  * @record
  * @extends {GPUObjectDescriptorBase}
  * @see https://www.w3.org/TR/webgpu/#dictdef-gpusamplerdescriptor
@@ -794,37 +895,37 @@ var GPUSamplerDescriptor = function() {};
  * @type {string}
  * @see https://www.w3.org/TR/webgpu/#dom-gpusamplerdescriptor-addressmodeu
  */
-GPUSamplerDescriptor.prototype.addressModeU; //GPUAddressMode
+GPUSamplerDescriptor.prototype.addressModeU;
 
 /**
  * @type {string}
  * @see https://www.w3.org/TR/webgpu/#dom-gpusamplerdescriptor-addressmodev
  */
-GPUSamplerDescriptor.prototype.addressModeV; //GPUAddressMode
+GPUSamplerDescriptor.prototype.addressModeV;
 
 /**
  * @type {string}
  * @see https://www.w3.org/TR/webgpu/#dom-gpusamplerdescriptor-addressmodew
  */
-GPUSamplerDescriptor.prototype.addressModeW; //GPUAddressMode
+GPUSamplerDescriptor.prototype.addressModeW;
 
 /**
  * @type {string}
  * @see https://www.w3.org/TR/webgpu/#dom-gpusamplerdescriptor-magfilter
  */
-GPUSamplerDescriptor.prototype.magFilter; //GPUFilterMode
+GPUSamplerDescriptor.prototype.magFilter;
 
 /**
  * @type {string}
  * @see https://www.w3.org/TR/webgpu/#dom-gpusamplerdescriptor-minfilter
  */
-GPUSamplerDescriptor.prototype.minFilter; //GPUFilterMode
+GPUSamplerDescriptor.prototype.minFilter;
 
 /**
  * @type {string}
  * @see https://www.w3.org/TR/webgpu/#dom-gpusamplerdescriptor-mipmapfilter
  */
- GPUSamplerDescriptor.prototype.mipmapFilter; //GPUFilterMode
+ GPUSamplerDescriptor.prototype.mipmapFilter;
 
 /**
  * @type {number}
@@ -842,7 +943,7 @@ GPUSamplerDescriptor.prototype.lodMaxClamp;
  * @type {string}
  * @see https://www.w3.org/TR/webgpu/#dom-gpusamplerdescriptor-compare
  */
-GPUSamplerDescriptor.prototype.compare; //GPUCompareFunction
+GPUSamplerDescriptor.prototype.compare;
 
 /**
  * @type {number}
@@ -878,28 +979,51 @@ var GPUBindGroupLayoutDescriptor = function() {};
 GPUBindGroupLayoutDescriptor.prototype.entries;
 
 /**
- * @interface
+ * @constructor
+ * @private
  * @see https://www.w3.org/TR/webgpu/#gpushaderstage
  */
 var GPUShaderStage = function() {};
 
 /**
- * @type {number}
+ * @const {number}
  * @see https://www.w3.org/TR/webgpu/#dom-gpushaderstage-vertex
  */
-GPUShaderStage.prototype.VERTEX;
+GPUShaderStage.VERTEX;
 
 /**
- * @type {number}
+ * @const {number}
  * @see https://www.w3.org/TR/webgpu/#dom-gpushaderstage-fragment
  */
-GPUShaderStage.prototype.FRAGMENT;
+GPUShaderStage.FRAGMENT;
 
 /**
- * @type {number}
+ * @const {number}
  * @see https://www.w3.org/TR/webgpu/#dom-gpushaderstage-compute
  */
-GPUShaderStage.prototype.COMPUTE;
+GPUShaderStage.COMPUTE;
+
+/**
+ * @private
+ * @constructor
+ * @see https://www.w3.org/TR/webgpu/#namespacedef-gpucolorwrite
+ */
+var GPUColorWrite = function() {};
+
+/** @const {number} */
+GPUColorWrite.RED;
+
+/** @const {number} */
+GPUColorWrite.GREEN;
+
+/** @const {number} */
+GPUColorWrite.BLUE;
+
+/** @const {number} */
+GPUColorWrite.ALPHA;
+
+/** @const {number} */
+GPUColorWrite.ALL;
 
 /**
  * @interface
@@ -1071,43 +1195,49 @@ GPUShaderModuleDescriptor.prototype.code;
 GPUShaderModuleDescriptor.prototype.sourceMap;
 
 /**
+ * @type {Map<string, (GPUPipelineLayout|string)>}
+ * @see https://www.w3.org/TR/webgpu/#dictdef-gpushadermodulecompilationhint
+ */
+GPUShaderModuleDescriptor.prototype.hints;
+
+/**
  * @interface
  * @see https://www.w3.org/TR/webgpu/#gpucompilationmessage
  */
 var GPUCompilationMessage = function() {};
 
 /**
- * @type {string}
+ * @const {string}
  * @see https://www.w3.org/TR/webgpu/#dom-gpucompilationmessage-message
  */
 GPUCompilationMessage.prototype.message;
 
 /**
- * @type {string}
+ * @const {string}
  * @see https://www.w3.org/TR/webgpu/#dom-gpucompilationmessage-type
  */
-GPUCompilationMessage.prototype.type; //GPUCompilationMessageType
+GPUCompilationMessage.prototype.type;
 
 /**
- * @type {number}
+ * @const {number}
  * @see https://www.w3.org/TR/webgpu/#dom-gpucompilationmessage-linenum
  */
 GPUCompilationMessage.prototype.lineNum;
 
 /**
- * @type {number}
+ * @const {number}
  * @see https://www.w3.org/TR/webgpu/#dom-gpucompilationmessage-linepos
  */
 GPUCompilationMessage.prototype.linePos;
 
 /**
- * @return {number}
+ * @const {number}
  * @see https://www.w3.org/TR/webgpu/#dom-gpucompilationmessage-offset
  */
 GPUCompilationMessage.prototype.offset;
 
 /**
- * @type {number}
+ * @const {number}
  * @see https://www.w3.org/TR/webgpu/#dom-gpucompilationmessage-length
  */
 GPUCompilationMessage.prototype.length;
@@ -1119,7 +1249,7 @@ GPUCompilationMessage.prototype.length;
 var GPUCompilationInfo = function() {};
 
 /**
- * @type {Array<GPUCompilationMessage>}
+ * @const {Array<GPUCompilationMessage>}
  * @see https://www.w3.org/TR/webgpu/#dom-gpucompilationinfo-messages
  */
 GPUCompilationInfo.prototype.messages;
@@ -1141,7 +1271,7 @@ GPUExternalTextureDescriptor.prototype.source;
  * @type {string}
  * @see https://www.w3.org/TR/webgpu/#dom-gpuexternaltexturedescriptor-colorspace
  */
-GPUExternalTextureDescriptor.prototype.colorSpace; //
+GPUExternalTextureDescriptor.prototype.colorSpace;
 
 /**
  * @interface
@@ -1149,6 +1279,12 @@ GPUExternalTextureDescriptor.prototype.colorSpace; //
  * @see https://www.w3.org/TR/webgpu/#gpuexternaltexture
  */
 var GPUExternalTexture = function() {};
+
+/**
+ * @const {boolean}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpuexternaltexture-expired
+ */
+GPUExternalTexture.prototype.expired;
 
 /**
  * @record
@@ -1181,6 +1317,12 @@ GPUProgrammableStage.prototype.module;
  * @see https://www.w3.org/TR/webgpu/#dom-gpuprogrammablestage-entrypoint
  */
 GPUProgrammableStage.prototype.entryPoint;
+
+/**
+ * @type {Map<string, number>}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpuprogrammablestage-constants
+ */
+GPUProgrammableStage.prototype.constants;
 
 /**
  * @interface
@@ -1355,19 +1497,19 @@ GPUCommandEncoder.prototype.finish = function(descriptor) {};
  * @extends {GPUObjectDescriptorBase}
  * @see https://www.w3.org/TR/webgpu/#dictdef-gpurenderpasslayout
  */
-var  GPURenderPassLayout = function() {};
+var GPURenderPassLayout = function() {};
 
 /**
  * @type {Array<string>}
  * @see https://www.w3.org/TR/webgpu/#dom-gpurenderbundleencoderdescriptor-colorformats
  */
-GPURenderPassLayout.prototype.colorFormats; //GPUTextureFormat
+GPURenderPassLayout.prototype.colorFormats;
 
 /**
  * @type {string}
  * @see https://www.w3.org/TR/webgpu/#enumdef-gputextureformat
  */
-GPURenderPassLayout.prototype.depthStencilFormat; //GPUTextureFormat
+GPURenderPassLayout.prototype.depthStencilFormat;
 
 /**
  * @type {number}
@@ -1427,8 +1569,8 @@ GPUDebugCommandsMixin.prototype.insertDebugMarker = function(markerLabel) {};
  * @extends {GPUObjectBase}
  * @extends {GPUCommandsMixin}
  * @extends {GPUDebugCommandsMixin}
- * @extends {GPUProgrammablePassEncoder}
- * @extends {GPURenderEncoderBase}
+ * @extends {GPUBindingCommandsMixin}
+ * @extends {GPURenderCommandsMixin}
  * @see https://www.w3.org/TR/webgpu/#gpurenderbundleencoder
  */
 var GPURenderBundleEncoder = function() {};
@@ -1451,7 +1593,7 @@ var GPUQuerySetDescriptor = function() {};
  * @type {string}
  * @see https://www.w3.org/TR/webgpu/#dom-gpuquerysetdescriptor-type
  */
-GPUQuerySetDescriptor.prototype.type; //GPUQueryType
+GPUQuerySetDescriptor.prototype.type;
 
 /**
  * @type {number}
@@ -1471,6 +1613,18 @@ var GPUQuerySet = function() {};
  * @see https://www.w3.org/TR/webgpu/#dom-gpuqueryset-destroy
  */
 GPUQuerySet.prototype.destroy = function() {};
+
+/**
+ * @const {string}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpuqueryset-type
+ */
+GPUQuerySet.prototype.type;
+
+/**
+ * @const {number}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpuqueryset-count
+ */
+GPUQuerySet.prototype.count;
 
 /**
  * @record
@@ -1525,19 +1679,25 @@ GPUTextureDescriptor.prototype.sampleCount;
  * @type {string}
  * @see https://www.w3.org/TR/webgpu/#dom-gputexturedescriptor-dimension
  */
-GPUTextureDescriptor.prototype.dimension; //GPUTextureDimension
+GPUTextureDescriptor.prototype.dimension;
 
 /**
  * @type {string}
  * @see https://www.w3.org/TR/webgpu/#dom-gputexturedescriptor-format
  */
-GPUTextureDescriptor.prototype.format; //GPUTextureFormat
+GPUTextureDescriptor.prototype.format;
 
 /**
  * @type {number}
  * @see https://www.w3.org/TR/webgpu/#dom-gputexturedescriptor-usage
  */
 GPUTextureDescriptor.prototype.usage;
+
+/**
+ * @type {Array<string>}
+ * @see https://www.w3.org/TR/webgpu/#dom-gputexturedescriptor-viewformats
+ */
+GPUTextureDescriptor.prototype.viewFormats;
 
 /**
  * @interface
@@ -1574,7 +1734,7 @@ GPUImageCopyTexture.prototype.origin;
  * @type {string}
  * @see https://www.w3.org/TR/webgpu/#dom-gpuimagecopytexture-aspect
  */
-GPUImageCopyTexture.prototype.aspect; //GPUTextureAspect
+GPUImageCopyTexture.prototype.aspect;
 
 /**
  * @record
@@ -1607,7 +1767,7 @@ GPUImageDataLayout.prototype.rowsPerImage;
 var GPUImageCopyExternalImage = function() {};
 
 /**
- * @type {ImageBitmap|HTMLCanvasElement|OffscreenCanvas}
+ * @type {ImageBitmap|HTMLVideoElement|HTMLCanvasElement|OffscreenCanvas}
  * @see https://www.w3.org/TR/webgpu/#dom-gpuimagecopyexternalimage-source
  */
 GPUImageCopyExternalImage.prototype.source;
@@ -1625,22 +1785,17 @@ GPUImageCopyExternalImage.prototype.origin;
 GPUImageCopyExternalImage.prototype.flipY;
 
 /**
- * @interface
+ * @constructor
+ * @private
  * @see https://www.w3.org/TR/webgpu/#gpumapmode
  */
 var GPUMapMode = function() {};
 
-/**
- * @type {number}
- * @see https://www.w3.org/TR/webgpu/#dom-gpumapmode-read
- */
-GPUMapMode.prototype.READ;
+/** @const {number} */
+GPUMapMode.READ;
 
-/**
- * @type {number}
- * @see https://www.w3.org/TR/webgpu/#dom-gpumapmode-write
- */
-GPUMapMode.prototype.WRITE;
+/** @const {number} */
+GPUMapMode.WRITE;
 
 /**
  * @interface
@@ -1660,19 +1815,19 @@ var GPUTextureViewDescriptor = function() {};
  * @type {string}
  * @see https://www.w3.org/TR/webgpu/#dom-gputextureviewdescriptor-format
  */
-GPUTextureViewDescriptor.prototype.format; //GPUTextureFormat
+GPUTextureViewDescriptor.prototype.format;
 
 /**
  * @type {string}
  * @see https://www.w3.org/TR/webgpu/#dom-gputextureviewdescriptor-dimension
  */
-GPUTextureViewDescriptor.prototype.dimension; //GPUTextureViewDimension
+GPUTextureViewDescriptor.prototype.dimension;
 
 /**
  * @type {string}
  * @see https://www.w3.org/TR/webgpu/#dom-gputextureviewdescriptor-aspect
  */
-GPUTextureViewDescriptor.prototype.aspect; //GPUTextureAspect
+GPUTextureViewDescriptor.prototype.aspect;
 
 /**
  * @type {number}
@@ -1708,7 +1863,7 @@ var GPUBufferBindingLayout = function() {};
  * @type {string}
  * @see https://www.w3.org/TR/webgpu/#dom-gpubufferbindinglayout-type
  */
- GPUBufferBindingLayout.prototype.type; //GPUBufferBindingType
+ GPUBufferBindingLayout.prototype.type;
 
 /**
  * @type {boolean}
@@ -1732,7 +1887,7 @@ var GPUSamplerBindingLayout = function() {};
  * @type {string}
  * @see https://www.w3.org/TR/webgpu/#dom-gpusamplerbindinglayout-type
  */
-GPUSamplerBindingLayout.prototype.type; //GPUSamplerBindingType
+GPUSamplerBindingLayout.prototype.type;
 
 /**
  * @record
@@ -1744,13 +1899,13 @@ var GPUTextureBindingLayout = function() {};
  * @type {string}
  * @see https://www.w3.org/TR/webgpu/#dom-gputexturebindinglayout-sampletype
  */
-GPUTextureBindingLayout.prototype.sampleType; //GPUTextureSampleType
+GPUTextureBindingLayout.prototype.sampleType;
 
 /**
  * @type {string}
  * @see https://www.w3.org/TR/webgpu/#dom-gputexturebindinglayout-viewdimension
  */
-GPUTextureBindingLayout.prototype.viewDimension; //GPUTextureViewDimension
+GPUTextureBindingLayout.prototype.viewDimension;
 
 /**
  * @type {boolean}
@@ -1768,13 +1923,13 @@ var GPUStorageTextureBindingLayout = function() {};
  * @type {string}
  * @see https://www.w3.org/TR/webgpu/#dom-gpustoragetexturebindinglayout-access
  */
-GPUStorageTextureBindingLayout.prototype.access; //
+GPUStorageTextureBindingLayout.prototype.access;
 
 /**
  * @type {string}
  * @see https://www.w3.org/TR/webgpu/#dom-gpustoragetexturebindinglayout-format
  */
-GPUStorageTextureBindingLayout.prototype.format; //GPUTextureFormat
+GPUStorageTextureBindingLayout.prototype.format;
 
 /**
  * @type {string} //GPUTextureViewDimension
@@ -1817,7 +1972,7 @@ var GPUVertexBufferLayout = function() {};
  * @type {string}
  * @see https://www.w3.org/TR/webgpu/#dom-gpuvertexbufferlayout-stepmode
  */
- GPUVertexBufferLayout.prototype.stepMode; //GPUInputStepMode
+ GPUVertexBufferLayout.prototype.stepMode;
 
 /**
  * @type {Array<GPUVertexAttribute>}
@@ -1835,7 +1990,7 @@ var GPUVertexAttribute = function() {};
  * @type {string}
  * @see https://www.w3.org/TR/webgpu/#dom-gpuvertexattribute-format
  */
-GPUVertexAttribute.prototype.format; //GPUVertexFormat
+GPUVertexAttribute.prototype.format;
 
 /**
  * @type {number}
@@ -1859,31 +2014,31 @@ var GPUPrimitiveState = function() {};
  * @type {string}
  * @see https://www.w3.org/TR/webgpu/#dom-gpuprimitivestate-topology
  */
-GPUPrimitiveState.prototype.topology; //GPUPrimitiveTopology
+GPUPrimitiveState.prototype.topology;
 
 /**
  * @type {string}
  * @see https://www.w3.org/TR/webgpu/#dom-gpuprimitivestate-stripindexformat
  */
-GPUPrimitiveState.prototype.stripIndexFormat; //GPUIndexFormat
+GPUPrimitiveState.prototype.stripIndexFormat;
 
 /**
  * @type {string}
  * @see https://www.w3.org/TR/webgpu/#dom-gpuprimitivestate-frontface
  */
-GPUPrimitiveState.prototype.frontFace; //GPUFrontFace
+GPUPrimitiveState.prototype.frontFace;
 
 /**
  * @type {string}
  * @see https://www.w3.org/TR/webgpu/#dom-gpuprimitivestate-cullmode
  */
-GPUPrimitiveState.prototype.cullMode; //GPUCullMode
+GPUPrimitiveState.prototype.cullMode;
 
 /**
  * @type {boolean}
- * @see https://www.w3.org/TR/webgpu/#dom-gpuprimitivestate-clampdepth
+ * @see https://www.w3.org/TR/webgpu/#dom-gpuprimitivestate-unclippeddepth
  */
-GPUPrimitiveState.prototype.clampDepth;
+GPUPrimitiveState.prototype.unclippedDepth;
 
 /**
  * @record
@@ -1895,7 +2050,7 @@ var GPUDepthStencilState = function() {};
  * @type {string}
  * @see https://www.w3.org/TR/webgpu/#dom-gpudepthstencilstate-format
  */
-GPUDepthStencilState.prototype.format; //GPUTextureFormat
+GPUDepthStencilState.prototype.format;
 
 /**
  * @type {boolean}
@@ -1907,7 +2062,7 @@ GPUDepthStencilState.prototype.depthWriteEnabled;
  * @type {string}
  * @see https://www.w3.org/TR/webgpu/#dom-gpudepthstencilstate-depthcompare
  */
-GPUDepthStencilState.prototype.depthCompare; //GPUCompareFunction
+GPUDepthStencilState.prototype.depthCompare;
 
 /**
  * @type {GPUStencilFaceState}
@@ -1998,13 +2153,13 @@ var GPUColorTargetState = function() {};
  * @type {string}
  * @see https://www.w3.org/TR/webgpu/#dom-gpucolortargetstate-format
  */
-GPUColorTargetState.prototype.format; //GPUTextureFormat
+GPUColorTargetState.prototype.format;
 
 /**
  * @type {string}
  * @see https://www.w3.org/TR/webgpu/#dom-gpucolortargetstate-blend
  */
-GPUColorTargetState.prototype.blend; //GPUBlendState
+GPUColorTargetState.prototype.blend;
 
 /**
  * @type {number}
@@ -2040,19 +2195,19 @@ var GPUBlendComponent = function() {};
  * @type {string}
  * @see https://www.w3.org/TR/webgpu/#dom-gpublendcomponent-srcfactor
  */
-GPUBlendComponent.prototype.srcFactor; //GPUBlendFactor
+GPUBlendComponent.prototype.srcFactor;
 
 /**
  * @type {string}
  * @see https://www.w3.org/TR/webgpu/#dom-gpublendcomponent-dstfactor
  */
-GPUBlendComponent.prototype.dstFactor; //GPUBlendFactor
+GPUBlendComponent.prototype.dstFactor;
 
 /**
  * @type {string}
  * @see https://www.w3.org/TR/webgpu/#dom-gpublendcomponent-operation
  */
-GPUBlendComponent.prototype.operation; //GPUBlendOperation
+GPUBlendComponent.prototype.operation;
 
 /**
  * @interface
@@ -2064,14 +2219,14 @@ var GPUObjectBase = function() {};
  * @type {string}
  * @see https://www.w3.org/TR/webgpu/#dom-gpuobjectbase-label
  */
-GPUObjectBase.prototype.label; //GPUBlendOperation
+GPUObjectBase.prototype.label;
 
 /**
  * @interface
  * @extends {GPUObjectBase}
  * @extends {GPUCommandsMixin}
  * @extends {GPUDebugCommandsMixin}
- * @extends {GPUProgrammablePassEncoder}
+ * @extends {GPUBindingCommandsMixin}
  * @see https://www.w3.org/TR/webgpu/#gpucomputepassencoder
  */
 var GPUComputePassEncoder = function() {};
@@ -2084,50 +2239,50 @@ var GPUComputePassEncoder = function() {};
 GPUComputePassEncoder.prototype.setPipeline = function(pipeline) {};
 
 /**
- * @param {number} x
- * @param {number=} y
- * @param {number=} z
+ * @param {number} workgroupCountX
+ * @param {number=} workgroupCountY
+ * @param {number=} workgroupCountZ
  * @return {undefined}
- * @see https://www.w3.org/TR/webgpu/#dom-gpucomputepassencoder-dispatch
+ * @see https://www.w3.org/TR/webgpu/#dom-gpucomputepassencoder-dispatchworkgroups
  */
-GPUComputePassEncoder.prototype.dispatch = function(x, y, z) {};
+GPUComputePassEncoder.prototype.dispatchWorkgroups = function(workgroupCountX, workgroupCountY, workgroupCountZ) {};
 
 /**
  * @param {GPUBuffer} indirectBuffer
  * @param {number} indirectOffset
  * @return {undefined}
- * @see https://www.w3.org/TR/webgpu/#dom-gpucomputepassencoder-dispatchindirect
+ * @see https://www.w3.org/TR/webgpu/#dom-gpucomputepassencoder-dispatchworkgroupsindirect
  */
-GPUComputePassEncoder.prototype.dispatchIndirect = function(indirectBuffer, indirectOffset) {};
+GPUComputePassEncoder.prototype.dispatchWorkgroupsIndirect = function(indirectBuffer, indirectOffset) {};
 
 /**
  * @return {undefined}
- * @see https://www.w3.org/TR/webgpu/#dom-gpucomputepassencoder-endpass
+ * @see https://www.w3.org/TR/webgpu/#dom-gpucomputepassencoder-end
  */
-GPUComputePassEncoder.prototype.endPass = function() {};
+GPUComputePassEncoder.prototype.end = function() {};
 
 /**
  * @interface
- * @see https://www.w3.org/TR/webgpu/#gpurenderencoderbase
+ * @see https://www.w3.org/TR/webgpu/#gpurendercommandsmixin
  */
-var GPURenderEncoderBase = function() {};
+var GPURenderCommandsMixin = function() {};
 
 /**
  * @param {GPURenderPipeline} pipeline
  * @return {undefined}
- * @see https://www.w3.org/TR/webgpu/#dom-gpurenderencoderbase-setpipeline
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurendercommandsmixin-setpipeline
  */
-GPURenderEncoderBase.prototype.setPipeline = function(pipeline) {};
+GPURenderCommandsMixin.prototype.setPipeline = function(pipeline) {};
 
 /**
  * @param {GPUBuffer} buffer
- * @param {string} indexFormat //GPUIndexFormat
+ * @param {string} indexFormat
  * @param {number=} offset
  * @param {number=} size
  * @return {undefined}
- * @see https://www.w3.org/TR/webgpu/#dom-gpurenderencoderbase-setindexbuffer
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurendercommandsmixin-setindexbuffer
  */
-GPURenderEncoderBase.prototype.setIndexBuffer = function(buffer, indexFormat, offset, size) {};
+GPURenderCommandsMixin.prototype.setIndexBuffer = function(buffer, indexFormat, offset, size) {};
 
 /**
  * @param {number} slot
@@ -2135,9 +2290,9 @@ GPURenderEncoderBase.prototype.setIndexBuffer = function(buffer, indexFormat, of
  * @param {number=} offset
  * @param {number=} size
  * @return {undefined}
- * @see https://www.w3.org/TR/webgpu/#dom-gpurenderencoderbase-setvertexbuffer
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurendercommandsmixin-setvertexbuffer
  */
-GPURenderEncoderBase.prototype.setVertexBuffer = function(slot, buffer, offset, size) {};
+GPURenderCommandsMixin.prototype.setVertexBuffer = function(slot, buffer, offset, size) {};
 
 /**
  * @param {number} vertexCount
@@ -2145,9 +2300,9 @@ GPURenderEncoderBase.prototype.setVertexBuffer = function(slot, buffer, offset, 
  * @param {number=} firstVertex
  * @param {number=} firstInstance
  * @return {undefined}
- * @see https://www.w3.org/TR/webgpu/#dom-gpurenderencoderbase-draw
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurendercommandsmixin-draw
  */
-GPURenderEncoderBase.prototype.draw = function(vertexCount, instanceCount, firstVertex, firstInstance) {};
+GPURenderCommandsMixin.prototype.draw = function(vertexCount, instanceCount, firstVertex, firstInstance) {};
 
 /**
  * @param {number} indexCount
@@ -2156,50 +2311,50 @@ GPURenderEncoderBase.prototype.draw = function(vertexCount, instanceCount, first
  * @param {number=} baseVertex
  * @param {number=} firstInstance
  * @return {undefined}
- * @see https://www.w3.org/TR/webgpu/#dom-gpurenderencoderbase-drawindexed
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurendercommandsmixin-drawindexed
  */
-GPURenderEncoderBase.prototype.drawIndexed = function(indexCount, instanceCount, firstIndex, baseVertex, firstInstance) {};
+GPURenderCommandsMixin.prototype.drawIndexed = function(indexCount, instanceCount, firstIndex, baseVertex, firstInstance) {};
 
 /**
  * @param {GPUBuffer} indirectBuffer
  * @param {number} indirectOffset
  * @return {undefined}
- * @see https://www.w3.org/TR/webgpu/#dom-gpurenderencoderbase-drawindirect
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurendercommandsmixin-drawindirect
  */
-GPURenderEncoderBase.prototype.drawIndirect = function(indirectBuffer, indirectOffset) {};
+GPURenderCommandsMixin.prototype.drawIndirect = function(indirectBuffer, indirectOffset) {};
 
 /**
  * @param {GPUBuffer} indirectBuffer
  * @param {number} indirectOffset
  * @return {undefined}
- * @see https://www.w3.org/TR/webgpu/#dom-gpurenderencoderbase-drawindexedindirect
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurendercommandsmixin-drawindexedindirect
  */
-GPURenderEncoderBase.prototype.drawIndexedIndirect = function(indirectBuffer, indirectOffset) {};
+GPURenderCommandsMixin.prototype.drawIndexedIndirect = function(indirectBuffer, indirectOffset) {};
 
 /**
  * @interface
  * @see https://www.w3.org/TR/webgpu/#gpuprogrammablepassencoder
  */
-var GPUProgrammablePassEncoder = function() {};
+var GPUBindingCommandsMixin = function() {};
 
 /**
  * @param {number} index
  * @param {GPUBindGroup} bindGroup
- * @param {Array<number>=} dynamicOffsetsData
+ * @param {Array<number>|ArrayBuffer<number>=} dynamicOffsetsData
  * @param {number=} dynamicOffsetsDataStart
  * @param {number=} dynamicOffsetsDataLength
  * @return {undefined}
  * @see https://www.w3.org/TR/webgpu/#dom-gpuprogrammablepassencoder-setbindgroup
  */
-GPUProgrammablePassEncoder.prototype.setBindGroup = function(index, bindGroup, dynamicOffsetsData, dynamicOffsetsDataStart, dynamicOffsetsDataLength) {};
+GPUBindingCommandsMixin.prototype.setBindGroup = function(index, bindGroup, dynamicOffsetsData, dynamicOffsetsDataStart, dynamicOffsetsDataLength) {};
 
 /**
  * @interface
  * @extends {GPUObjectBase}
  * @extends {GPUCommandsMixin}
  * @extends {GPUDebugCommandsMixin}
- * @extends {GPUProgrammablePassEncoder}
- * @extends {GPURenderEncoderBase}
+ * @extends {GPUBindingCommandsMixin}
+ * @extends {GPURenderCommandsMixin}
  * @see https://www.w3.org/TR/webgpu/#gpurenderpassencoder
  */
 var GPURenderPassEncoder = function() {};
@@ -2262,9 +2417,9 @@ GPURenderPassEncoder.prototype.executeBundles = function(querySet) {};
 
 /**
  * @return {undefined}
- * @see https://www.w3.org/TR/webgpu/#dom-gpurenderpassencoder-endpass
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurenderpassencoder-end
  */
-GPURenderPassEncoder.prototype.endPass = function() {};
+GPURenderPassEncoder.prototype.end = function() {};
 
 /**
  * @record
@@ -2316,16 +2471,22 @@ GPURenderPassColorAttachment.prototype.view;
 GPURenderPassColorAttachment.prototype.resolveTarget;
 
 /**
- * @type {string|Array<number>|GPUColorDict}
- * @see https://www.w3.org/TR/webgpu/#dom-gpurenderpasscolorattachment-loadvalue
+ * @type {GPUColorDict|number}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurenderpasscolorattachment-clearValue
  */
-GPURenderPassColorAttachment.prototype.loadValue; //GPULoadOp
+GPURenderPassColorAttachment.prototype.clearValue;
 
 /**
  * @type {string}
- * @see https://www.w3.org/TR/webgpu/#dom-gpurenderpasscolorattachment-storeop
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurenderpasscolorattachment-loadOp
  */
-GPURenderPassColorAttachment.prototype.storeOp; //GPUStoreOp
+GPURenderPassColorAttachment.prototype.loadOp;
+
+/**
+ * @type {string}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurenderpasscolorattachment-storeOp
+ */
+GPURenderPassColorAttachment.prototype.storeOp;
 
 /**
  * @record
@@ -2340,16 +2501,23 @@ var GPURenderPassDepthStencilAttachment = function() {};
 GPURenderPassDepthStencilAttachment.prototype.view;
 
 /**
- * @type {string|number}
+ * @type {number}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurenderpassdepthstencilattachment-depthclearvalue
+ */
+GPURenderPassDepthStencilAttachment.prototype.depthClearValue;
+
+
+/**
+ * @type {string}
  * @see https://www.w3.org/TR/webgpu/#dom-gpurenderpassdepthstencilattachment-depthloadvalue
  */
-GPURenderPassDepthStencilAttachment.prototype.depthLoadValue; //GPULoadOp
+GPURenderPassDepthStencilAttachment.prototype.depthLoadOp;
 
 /**
  * @type {string}
  * @see https://www.w3.org/TR/webgpu/#dom-gpurenderpassdepthstencilattachment-depthstoreop
  */
-GPURenderPassDepthStencilAttachment.prototype.depthStoreOp; //GPULoadOp
+GPURenderPassDepthStencilAttachment.prototype.depthStoreOp;
 
 /**
  * @type {boolean}
@@ -2358,20 +2526,26 @@ GPURenderPassDepthStencilAttachment.prototype.depthStoreOp; //GPULoadOp
 GPURenderPassDepthStencilAttachment.prototype.depthReadOnly;
 
 /**
- * @type {string|number}
- * @see https://www.w3.org/TR/webgpu/#dom-gpurenderpassdepthstencilattachment-stencilloadvalue
+ * @type {number}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurenderpassdepthstencilattachment-stencilclearvalue
  */
-GPURenderPassDepthStencilAttachment.prototype.stencilLoadValue; //GPULoadOp
+GPURenderPassDepthStencilAttachment.prototype.stencilClearValue;
+
+/**
+ * @type {string}
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurenderpassdepthstencilattachment-stencilloadop
+ */
+GPURenderPassDepthStencilAttachment.prototype.stencilLoadOp;
 
 /**
  * @type {string}
  * @see https://www.w3.org/TR/webgpu/#dom-gpurenderpassdepthstencilattachment-stencilstoreop
  */
-GPURenderPassDepthStencilAttachment.prototype.stencilStoreOp; //GPULoadOp
+GPURenderPassDepthStencilAttachment.prototype.stencilStoreOp;
 
 /**
  * @type {boolean}
- * @see https://www.w3.org/TR/webgpu/#dom-gpurenderpassdepthstencilattachment-stencilreadonly
+ * @see https://www.w3.org/TR/webgpu/#dom-gpurenderpassdepthstencilattachment-stencilstoreop
  */
 GPURenderPassDepthStencilAttachment.prototype.stencilReadOnly;
 
@@ -2432,25 +2606,25 @@ var GPUStencilFaceState = function() {};
  * @type {string}
  * @see https://www.w3.org/TR/webgpu/#dom-gpustencilfacestate-compare
  */
-GPUStencilFaceState.prototype.compare; //GPUCompareFunction
+GPUStencilFaceState.prototype.compare;
 
 /**
  * @type {string}
  * @see https://www.w3.org/TR/webgpu/#dom-gpustencilfacestate-failop
  */
-GPUStencilFaceState.prototype.failOp; //GPUStencilOperation
+GPUStencilFaceState.prototype.failOp;
 
 /**
  * @type {string}
  * @see https://www.w3.org/TR/webgpu/#dom-gpustencilfacestate-depthfailop
  */
-GPUStencilFaceState.prototype.depthFailOp; //GPUStencilOperation
+GPUStencilFaceState.prototype.depthFailOp;
 
 /**
  * @type {string}
  * @see https://www.w3.org/TR/webgpu/#dom-gpustencilfacestate-passop
  */
-GPUStencilFaceState.prototype.passOp; //GPUStencilOperation
+GPUStencilFaceState.prototype.passOp;
 
 /**
  * @record
@@ -2468,13 +2642,13 @@ GPURenderPassTimestampWrite.prototype.querySet;
  * @type {number}
  * @see https://www.w3.org/TR/webgpu/#dom-gpurenderpasstimestampwrite-queryindex
  */
-GPURenderPassTimestampWrite.prototype.queryIndex; //GPUSize32
+GPURenderPassTimestampWrite.prototype.queryIndex;
 
 /**
  * @type {string}
  * @see https://www.w3.org/TR/webgpu/#dom-gpurenderpasstimestampwrite-queryindex
  */
-GPURenderPassTimestampWrite.prototype.location; //GPURenderPassTimestampLocation
+GPURenderPassTimestampWrite.prototype.location;
 
 /**
  * @record
@@ -2492,10 +2666,10 @@ GPUComputePassTimestampWrite.prototype.querySet;
  * @type {number}
  * @see https://www.w3.org/TR/webgpu/#dom-gpucomputepasstimestampwrite-queryindex
  */
-GPUComputePassTimestampWrite.prototype.queryIndex; //GPUSize32
+GPUComputePassTimestampWrite.prototype.queryIndex;
 
 /**
  * @type {string}
  * @see https://www.w3.org/TR/webgpu/#dom-gpucomputepasstimestampwrite-location
  */
-GPUComputePassTimestampWrite.prototype.location; //GPURenderPassTimestampLocation
+GPUComputePassTimestampWrite.prototype.location;

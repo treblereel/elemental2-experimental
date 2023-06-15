@@ -19,7 +19,7 @@ BAZEL=${BAZEL:-bazel}
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
 modules=(
-      audio
+      #audio
       clipboard
       pointerlock
       #filesystem
